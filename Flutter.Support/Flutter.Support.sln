@@ -1,0 +1,93 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{DD636CFF-6902-4812-939B-706D5A3ECD67}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{FC076628-C4B4-46F5-9995-7E578F67624C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{3413AF21-83CE-4257-A4D7-312C1F3E08FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3BC29A07-2071-493D-8CB3-16549B4DD89D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Web", "Flutter.Support.Web\Flutter.Support.Web.csproj", "{1BB9BDBC-A0E7-44E8-8673-E0CC48EA9EF4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Domain", "Flutter.Support.Domain\Flutter.Support.Domain.csproj", "{DA178D0D-9468-4147-8128-D5AEA7C02AF6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Application", "Flutter.Support.Application\Flutter.Support.Application.csproj", "{7C28281B-150D-42D4-B94E-4B85CC9D576A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{6DFE702F-3EC0-45B6-B347-5579675FE1D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.ApiRepository", "Flutter.Support.ApiRepository\Flutter.Support.ApiRepository.csproj", "{0AB9B89B-3770-49F3-A3EB-F90367BB1896}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Console", "Flutter.Support.Console\Flutter.Support.Console.csproj", "{3BA2EA3E-B900-427B-AA8F-CDF5DD2967D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{461DAC74-0339-4914-8262-5B739267275D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Common", "Flutter.Support.Common\Flutter.Support.Common.csproj", "{1617CFDD-E771-4EDD-9EA3-AA3688A7F94B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{AFB71B24-D469-46A6-96AA-840EF8C79744}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.QueryServices", "Flutter.Support.QueryServices\Flutter.Support.QueryServices.csproj", "{F602BAB5-4C74-4693-B955-C4EE52395ABD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlutterSupport", "FlutterSupport", "{3B938C1E-DFD7-4FFE-BD95-DD67CED040E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flutter.Support.Extension", "Flutter.Support.Extension\Flutter.Support.Extension.csproj", "{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BB9BDBC-A0E7-44E8-8673-E0CC48EA9EF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BB9BDBC-A0E7-44E8-8673-E0CC48EA9EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BB9BDBC-A0E7-44E8-8673-E0CC48EA9EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BB9BDBC-A0E7-44E8-8673-E0CC48EA9EF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA178D0D-9468-4147-8128-D5AEA7C02AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA178D0D-9468-4147-8128-D5AEA7C02AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA178D0D-9468-4147-8128-D5AEA7C02AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA178D0D-9468-4147-8128-D5AEA7C02AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C28281B-150D-42D4-B94E-4B85CC9D576A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C28281B-150D-42D4-B94E-4B85CC9D576A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C28281B-150D-42D4-B94E-4B85CC9D576A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C28281B-150D-42D4-B94E-4B85CC9D576A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AB9B89B-3770-49F3-A3EB-F90367BB1896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AB9B89B-3770-49F3-A3EB-F90367BB1896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AB9B89B-3770-49F3-A3EB-F90367BB1896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AB9B89B-3770-49F3-A3EB-F90367BB1896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BA2EA3E-B900-427B-AA8F-CDF5DD2967D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BA2EA3E-B900-427B-AA8F-CDF5DD2967D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BA2EA3E-B900-427B-AA8F-CDF5DD2967D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BA2EA3E-B900-427B-AA8F-CDF5DD2967D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1617CFDD-E771-4EDD-9EA3-AA3688A7F94B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1617CFDD-E771-4EDD-9EA3-AA3688A7F94B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1617CFDD-E771-4EDD-9EA3-AA3688A7F94B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1617CFDD-E771-4EDD-9EA3-AA3688A7F94B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F602BAB5-4C74-4693-B955-C4EE52395ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F602BAB5-4C74-4693-B955-C4EE52395ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F602BAB5-4C74-4693-B955-C4EE52395ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F602BAB5-4C74-4693-B955-C4EE52395ABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1BB9BDBC-A0E7-44E8-8673-E0CC48EA9EF4} = {DD636CFF-6902-4812-939B-706D5A3ECD67}
+		{DA178D0D-9468-4147-8128-D5AEA7C02AF6} = {3413AF21-83CE-4257-A4D7-312C1F3E08FB}
+		{7C28281B-150D-42D4-B94E-4B85CC9D576A} = {FC076628-C4B4-46F5-9995-7E578F67624C}
+		{0AB9B89B-3770-49F3-A3EB-F90367BB1896} = {3BC29A07-2071-493D-8CB3-16549B4DD89D}
+		{3BA2EA3E-B900-427B-AA8F-CDF5DD2967D7} = {6DFE702F-3EC0-45B6-B347-5579675FE1D0}
+		{1617CFDD-E771-4EDD-9EA3-AA3688A7F94B} = {461DAC74-0339-4914-8262-5B739267275D}
+		{F602BAB5-4C74-4693-B955-C4EE52395ABD} = {3BC29A07-2071-493D-8CB3-16549B4DD89D}
+		{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA} = {3B938C1E-DFD7-4FFE-BD95-DD67CED040E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D65EE2A7-2C1F-4A86-A6E2-426683811A71}
+	EndGlobalSection
+EndGlobal

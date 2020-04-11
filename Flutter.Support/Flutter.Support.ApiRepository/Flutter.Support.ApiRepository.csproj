@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Attributes\ApiUrlAttribute.cs" />
+    <Compile Remove="Attributes\ApiUrlAttributeHelper.cs" />
+    <Compile Remove="Domain\IApiDto.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Flutter.Support.Common\Flutter.Support.Common.csproj" />
+    <ProjectReference Include="..\Flutter.Support.Domain\Flutter.Support.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Attributes\" />
+  </ItemGroup>
+
+</Project>
