@@ -14,14 +14,16 @@ namespace Flutter.Support.Web.Areas.News
     /// <summary>
     /// 
     /// </summary>
-    [ApiController]
     [Route("api/news")]
-    [ApiReceivedLogActionFilterAttribute]
-    public class NewsController : ControllerBase
+    public class NewsController : FlutterSupportControllerBase
     {
         private readonly INewsApplicationService newsApplicationService;
         private readonly IMapper mapper;
-        //private ILog log = LogManager.GetLogger(Startup.Repository.Name, typeof(NewsController));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newsApplicationService"></param>
+        /// <param name="mapper"></param>
         public NewsController(INewsApplicationService newsApplicationService
             , IMapper mapper)
         {
@@ -42,19 +44,5 @@ namespace Flutter.Support.Web.Areas.News
             return result;
         }
 
-        /// <summary>
-        /// 新闻查询
-        /// </summary>
-        /// <param name="viewModel"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("throw")]
-        public async Task<NewsQueryOutput> ExceptionTest(NewsQueryViewModel viewModel)
-        {
-            //var dto = await newsApplicationService.NewsQuery(viewModel.type);
-            //var result = mapper.Map<NewsQueryOutput>(dto);
-            //return result;
-            throw new System.Exception("异常测试");
-        }
     }
 }

@@ -16,7 +16,9 @@ using log4net.Config;
 using log4net.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -65,6 +67,9 @@ namespace Flutter.Support.Web
                 options.Filters.Add<HttpGlobalExceptionFilter>();//È«¾Ö×¢²á
             });
 
+            services.Configure<KestrelServerOptions>(x => x.AllowSynchronousIO = true)
+                .Configure<IISServerOptions>(x => x.AllowSynchronousIO = true);
+
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -112,6 +117,8 @@ namespace Flutter.Support.Web
 
             //log4net
             loggerFactory.AddLog4Net();
+
+          
         }
     }
 }

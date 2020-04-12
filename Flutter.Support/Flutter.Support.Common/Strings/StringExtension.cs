@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,35 @@ namespace Flutter.Support.Common.Strings
 
 
             return JsonConvert.SerializeObject(obj, options);
+        }
+
+        /// <summary>
+        /// JsonString转换为实体对象
+        /// </summary>
+        /// <typeparam name="TObject"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static TObject JsonToObject<TObject>(this string obj) where TObject : class, new()
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<TObject>(obj);
+            }
+            catch
+            {
+                return default(TObject);
+            }
+        }
+
+        /// <summary>
+        /// JsonString转换为实体对象
+        /// </summary>
+        /// <typeparam name="TObject"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static object JsonToObject(this string obj, Type TObjectType)
+        {
+            return JObject.Parse(obj).ToObject(TObjectType);
         }
     }
 }
