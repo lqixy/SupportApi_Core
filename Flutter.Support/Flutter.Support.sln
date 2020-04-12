@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{DD636CFF-6902-4812-939B-706D5A3ECD67}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Presentation", "01.Presentation", "{DD636CFF-6902-4812-939B-706D5A3ECD67}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{FC076628-C4B4-46F5-9995-7E578F67624C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.Application", "02.Application", "{FC076628-C4B4-46F5-9995-7E578F67624C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{3413AF21-83CE-4257-A4D7-312C1F3E08FB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Domain", "03.Domain", "{3413AF21-83CE-4257-A4D7-312C1F3E08FB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3BC29A07-2071-493D-8CB3-16549B4DD89D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.Infrastructure", "04.Infrastructure", "{3BC29A07-2071-493D-8CB3-16549B4DD89D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Web", "Flutter.Support.Web\Flutter.Support.Web.csproj", "{1BB9BDBC-A0E7-44E8-8673-E0CC48EA9EF4}"
 EndProject
@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.QueryServic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlutterSupport", "FlutterSupport", "{3B938C1E-DFD7-4FFE-BD95-DD67CED040E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flutter.Support.Extension", "Flutter.Support.Extension\Flutter.Support.Extension.csproj", "{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Extension", "Flutter.Support.Extension\Flutter.Support.Extension.csproj", "{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

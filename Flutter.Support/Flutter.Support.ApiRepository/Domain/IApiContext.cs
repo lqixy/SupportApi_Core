@@ -8,8 +8,8 @@ namespace Flutter.Support.ApiRepository.Domain
 {
     public interface IApiContext
     {
-        Task<TResult> PostAsync<TResult>(string url, object input) where TResult : IApiResultDto;
+        Task<TResult> PostAsync<TResult>(string url, object input) where TResult : class, IApiResultDto;
 
-        Task<TResult> GetAsync<TResult>(string url) where TResult : IApiResultDto;
+        Task<TResult> GetAsync<TResult>(string url) where TResult : class, IApiResultDto;
     }
 }

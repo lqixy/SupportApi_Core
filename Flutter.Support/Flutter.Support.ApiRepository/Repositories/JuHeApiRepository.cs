@@ -21,7 +21,7 @@ namespace Flutter.Support.ApiRepository.Repositories
 
         public async Task<TResult> GetAsync<TInput, TResult>(TInput input)
             where TInput : IApiInputDto
-            where TResult : IApiResultDto
+            where TResult :class, IApiResultDto
         {
             var attribute = GetApiUrl<TInput>();
 
@@ -45,7 +45,7 @@ namespace Flutter.Support.ApiRepository.Repositories
 
         public async Task<TResult> PostAsync<TInput, TResult>(TInput input)
             where TInput : IApiInputDto
-            where TResult : IApiResultDto
+            where TResult :class, IApiResultDto
         {
             var attribute = GetApiUrl<TInput>();
             var urlTitle = "http://v.juhe.cn";

@@ -12,6 +12,7 @@ using Flutter.Support.Domain.IApiRepositories.JuHe;
 using Flutter.Support.Extension.Configurations;
 using Flutter.Support.Web.Filters;
 using Flutter.Support.Web.Mappers;
+using Flutter.Support.Web.Middleware;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
@@ -62,11 +63,11 @@ namespace Flutter.Support.Web
                 var xmlPath = Path.Combine(basePath, "Flutter.Support.xml");
                 s.IncludeXmlComments(xmlPath);
             });
-            //Log
-            services.AddMvc(options =>
-            {
-                options.Filters.Add<HttpGlobalExceptionFilter>();//全局注册
-            });
+            ////Log
+            //services.AddMvc(options =>
+            //{
+            //    options.Filters.Add<HttpGlobalExceptionFilter>();//全局注册
+            //});
             //
             services.Configure<KestrelServerOptions>(x => x.AllowSynchronousIO = true)
                 .Configure<IISServerOptions>(x => x.AllowSynchronousIO = true);
@@ -104,6 +105,9 @@ namespace Flutter.Support.Web
 
             app.UseAuthorization();
 
+            //全局异常中间键
+            //app.UseUnifyException();
+            app.UseMiddleware(typeof(GlobalExceptionMiddleware));
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

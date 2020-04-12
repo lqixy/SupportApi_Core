@@ -1,6 +1,7 @@
 ﻿using Flutter.Support.Common;
 using Flutter.Support.Common.Strings;
 using Flutter.Support.Extension.Configurations;
+using Flutter.Support.Extension.Exceptions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
 using System;
@@ -26,23 +27,23 @@ namespace Flutter.Support.Web.Filters
             var requestData = requestStr.JsonToObject<ApiAuthorizationMd5SystemContent>();
             if (requestData == null)
             {
-                throw new Exception("参数错误");
+                throw new UserFriendlyException("参数错误");
             }
             //校验时间戳
             if (UnityHelper.GetUnixTimestamp() - requestData.TimeStamp > 30)
             {
-                throw new Exception("响应超时");
+                throw new UserFriendlyException("响应超时");
             }
             //校验商户信息
             if (string.IsNullOrEmpty(requestData.Key))
             {
-                throw new Exception("错误的Key");
+                throw new UserFriendlyException("错误的Key");
             }
 
             //验证加密参数
             if (requestData.RequestData.EncryptMd5(ConfigHelper.Get("AppSettings:ApiAuthorizationKey"), "utf-8") != requestData.SignData)
             {
-                throw new Exception("请检查参数传递是否正确");
+                throw new UserFriendlyException("请检查参数传递是否正确");
             }
 
             #region 修改请求的body  
