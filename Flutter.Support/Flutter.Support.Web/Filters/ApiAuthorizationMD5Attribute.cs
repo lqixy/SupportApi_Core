@@ -1,6 +1,8 @@
 ﻿using Flutter.Support.Common;
 using Flutter.Support.Common.Strings;
+using Flutter.Support.Extension.Configurations;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +14,7 @@ namespace Flutter.Support.Web.Filters
 {
     public class ApiAuthorizationMD5Attribute : Attribute, IAuthorizationFilter
     {
+
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             var request = context.HttpContext.Request;
@@ -35,16 +38,16 @@ namespace Flutter.Support.Web.Filters
             {
                 throw new Exception("错误的Key");
             }
-            
+
             //验证加密参数
-            if (requestData.RequestData.EncryptMd5("", "utf-8") != requestData.SignData)
+            if (requestData.RequestData.EncryptMd5(ConfigHelper.Get("AppSettings:ApiAuthorizationKey"), "utf-8") != requestData.SignData)
             {
                 throw new Exception("请检查参数传递是否正确");
-            };
+            }
 
             #region 修改请求的body  
             byte[] content = Encoding.UTF8.GetBytes(requestData.RequestData);
-            request.Body = new MemoryStream(content,0,content.Length);  
+            request.Body = new MemoryStream(content, 0, content.Length);
             request.Body.Seek(0, SeekOrigin.Begin);
             #endregion
 

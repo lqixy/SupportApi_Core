@@ -9,6 +9,7 @@ using Flutter.Support.ApiRepository.Domain;
 using Flutter.Support.ApiRepository.Repositories;
 using Flutter.Support.Application.News.Services;
 using Flutter.Support.Domain.IApiRepositories.JuHe;
+using Flutter.Support.Extension.Configurations;
 using Flutter.Support.Web.Filters;
 using Flutter.Support.Web.Mappers;
 using log4net;
@@ -66,9 +67,11 @@ namespace Flutter.Support.Web
             {
                 options.Filters.Add<HttpGlobalExceptionFilter>();//»´æ÷◊¢≤·
             });
-
+            //
             services.Configure<KestrelServerOptions>(x => x.AllowSynchronousIO = true)
                 .Configure<IISServerOptions>(x => x.AllowSynchronousIO = true);
+            ////∂¡»°json≈‰÷√
+            //services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
         }
 

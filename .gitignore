@@ -242,3 +242,4 @@ ModelManifest.xml
 .fake/
 /Flutter.Support/Flutter.Support.Web/log
 /Flutter.Support/Flutter.Support.Web/Errorlog
+appsettings.json
