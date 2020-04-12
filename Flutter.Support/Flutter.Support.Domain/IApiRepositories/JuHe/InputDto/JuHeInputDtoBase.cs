@@ -10,7 +10,7 @@ namespace Flutter.Support.Domain.IApiRepositories.JuHe.InputDto
     {
         public JuHeInputDtoBase()
         {
-
+            Key = "2ec31489d6eeb5194b173ef67250bc37";
         }
 
         [JsonProperty(PropertyName = "key")]

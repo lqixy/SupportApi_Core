@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace Flutter.Support.Web.Models.ViewModel
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class NewsQueryViewModel
     {
         /// <summary>

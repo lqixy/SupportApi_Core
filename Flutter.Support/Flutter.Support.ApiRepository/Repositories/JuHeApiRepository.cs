@@ -26,6 +26,7 @@ namespace Flutter.Support.ApiRepository.Repositories
             var attribute = GetApiUrl<TInput>();
 
             var url = attribute.GetUrl();
+            var urlTitle = "http://v.juhe.cn";
 
             var properties = input.GetType().GetProperties();
             //if (properties.Length <= 0) throw new UserFriendlyException("input is null");

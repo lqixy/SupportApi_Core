@@ -21,10 +21,17 @@ namespace Flutter.Support.Web
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-                .ConfigureWebHostDefaults(webBuilder =>
+            .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
                     .UseStartup<Startup>();
-                });
+                })
+            //.ConfigureLogging((hosttingContext, logging) =>
+            //    {
+            //        logging.AddFilter("System", LogLevel.Warning);
+            //        logging.AddFilter("Microsoft", LogLevel.Warning);
+            //        logging.AddLog4Net();
+            //    })
+            ;
     }
 }

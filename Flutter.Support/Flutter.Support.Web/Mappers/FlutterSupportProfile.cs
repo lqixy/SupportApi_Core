@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Flutter.Support.Application.ApplicationDtos;
 using Flutter.Support.Application.News.Dtos;
+using Flutter.Support.Web.Models.Output;
 using Flutter.Support.Web.Models.Output.News;
 using System;
 using System.Collections.Generic;
