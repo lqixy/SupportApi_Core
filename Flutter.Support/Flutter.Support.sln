@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FlutterSupport", "FlutterSu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Extension", "Flutter.Support.Extension\Flutter.Support.Extension.csproj", "{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.AutoService", "Flutter.Support.AutoService\Flutter.Support.AutoService.csproj", "{8083A429-D7DD-42FC-B0AE-A45CA5ED4BE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8083A429-D7DD-42FC-B0AE-A45CA5ED4BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8083A429-D7DD-42FC-B0AE-A45CA5ED4BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8083A429-D7DD-42FC-B0AE-A45CA5ED4BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8083A429-D7DD-42FC-B0AE-A45CA5ED4BE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{1617CFDD-E771-4EDD-9EA3-AA3688A7F94B} = {461DAC74-0339-4914-8262-5B739267275D}
 		{F602BAB5-4C74-4693-B955-C4EE52395ABD} = {3BC29A07-2071-493D-8CB3-16549B4DD89D}
 		{404BEDBB-3DDF-4C07-B3CD-9D9F2A4968BA} = {3B938C1E-DFD7-4FFE-BD95-DD67CED040E8}
+		{8083A429-D7DD-42FC-B0AE-A45CA5ED4BE0} = {DD636CFF-6902-4812-939B-706D5A3ECD67}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D65EE2A7-2C1F-4A86-A6E2-426683811A71}
