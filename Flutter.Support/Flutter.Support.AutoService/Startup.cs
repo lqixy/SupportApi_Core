@@ -55,7 +55,7 @@ namespace Flutter.Support.AutoService
                 Authorization = new[] { authorFilter }
             });
 
-            RecurringJob.AddOrUpdate(() => Console.WriteLine("this is Hangfire Test"), Cron.Minutely);
+            RecurringJob.AddOrUpdate(() => Console.WriteLine("this is Hangfire Test"), Cron.Hourly);
             //BackgroundJob.Enqueue(() => Console.WriteLine("队列任务"));
         }
     }

@@ -243,3 +243,4 @@ ModelManifest.xml
 /Flutter.Support/Flutter.Support.Web/log
 /Flutter.Support/Flutter.Support.Web/Errorlog
 appsettings.json
+/Flutter.Support/Flutter.Support.AutoService/Dockerfile
