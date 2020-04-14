@@ -1,11 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Autofac;
 using AutoMapper;
+using Castle.Windsor;
 using Flutter.Support.ApiRepository.Domain;
 using Flutter.Support.ApiRepository.Repositories;
 using Flutter.Support.Application.News.Services;
 using Flutter.Support.Domain.IApiRepositories.JuHe;
+using Flutter.Support.Extension.Dependencies;
 using Flutter.Support.Web.Mappers;
 using Flutter.Support.Web.Middleware;
 using log4net;
@@ -16,6 +20,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -97,6 +102,7 @@ namespace Flutter.Support.Web
             //services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             #endregion
+
         }
 
         #region Autofac
@@ -109,13 +115,15 @@ namespace Flutter.Support.Web
             builder.RegisterType<ApiContext>().As<IApiContext>();
             builder.RegisterType<ApiHttpClient>().As<IApiHttpClient>();
             builder.RegisterType<JuHeApiRepository>().As<IJuHeApiRepository>();
-            builder.RegisterType<NewsApplicationService>().As<INewsApplicationService>();
+            //builder.RegisterType<NewsApplicationService>().As<INewsApplicationService>();
+
+            builder.IocBuilder(); 
         }
 
         #endregion
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
-        { 
+        {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

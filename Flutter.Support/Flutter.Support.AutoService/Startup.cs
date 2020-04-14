@@ -29,6 +29,7 @@ namespace Flutter.Support.AutoService
                 x.UseSqlServerStorage(connectionString);
             });
             services.AddHangfireServer();
+             
         }
 
         public void Configure(IApplicationBuilder app)
