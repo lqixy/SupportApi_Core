@@ -29,6 +29,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Flutter.Support.ApiRepository\Flutter.Support.ApiRepository.csproj" />
     <ProjectReference Include="..\Flutter.Support.Application\Flutter.Support.Application.csproj" />
+    <ProjectReference Include="..\Flutter.Support.Dapper\Flutter.Support.Dapper.csproj" />
+    <ProjectReference Include="..\Flutter.Support.QueryServices.Dapper\Flutter.Support.QueryServices.Dapper.csproj" />
     <ProjectReference Include="..\Flutter.Support.QueryServices\Flutter.Support.QueryServices.csproj" />
   </ItemGroup>
 

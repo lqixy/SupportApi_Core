@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="News\**" />
-    <EmbeddedResource Remove="News\**" />
-    <None Remove="News\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Flutter.Support.Common\Flutter.Support.Common.csproj" />
     <ProjectReference Include="..\Flutter.Support.Extension\Flutter.Support.Extension.csproj" />
   </ItemGroup>

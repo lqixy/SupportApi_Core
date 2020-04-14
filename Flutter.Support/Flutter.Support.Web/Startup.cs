@@ -8,8 +8,11 @@ using Castle.Windsor;
 using Flutter.Support.ApiRepository.Domain;
 using Flutter.Support.ApiRepository.Repositories;
 using Flutter.Support.Application.News.Services;
+using Flutter.Support.Dapper;
 using Flutter.Support.Domain.IApiRepositories.JuHe;
 using Flutter.Support.Extension.Dependencies;
+using Flutter.Support.QueryServices.Dapper.News;
+using Flutter.Support.QueryServices.News;
 using Flutter.Support.Web.Mappers;
 using Flutter.Support.Web.Middleware;
 using log4net;
@@ -116,7 +119,9 @@ namespace Flutter.Support.Web
             builder.RegisterType<ApiHttpClient>().As<IApiHttpClient>();
             builder.RegisterType<JuHeApiRepository>().As<IJuHeApiRepository>();
             //builder.RegisterType<NewsApplicationService>().As<INewsApplicationService>();
-
+            builder.RegisterType<SqlServerDbProviderFactory>().As<IDbProviderFactory>();
+            builder.RegisterType<DefaultConnectionStringResolver>().As<IConnectionStringResolver>();
+            
             builder.IocBuilder(); 
         }
 

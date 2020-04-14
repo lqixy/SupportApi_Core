@@ -8,6 +8,6 @@ namespace Flutter.Support.Application.News.Services
 {
     public interface INewsApplicationService
     {
-        Task<NewsQueryDto> NewsQuery(string type);
+        Task  NewsQuery(string type);
     }
 }
