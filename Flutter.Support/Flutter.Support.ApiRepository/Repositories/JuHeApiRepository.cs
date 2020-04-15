@@ -20,13 +20,12 @@ namespace Flutter.Support.ApiRepository.Repositories
         }
 
         public async Task<TResult> GetAsync<TInput, TResult>(TInput input)
-            where TInput : IApiInputDto
-            where TResult :class, IApiResultDto
+           where TInput : IApiInputDto
+           where TResult : class, IApiResultDto
         {
             var attribute = GetApiUrl<TInput>();
 
             var url = attribute.GetUrl();
-            var urlTitle = "http://v.juhe.cn";
 
             var properties = input.GetType().GetProperties();
             //if (properties.Length <= 0) throw new UserFriendlyException("input is null");
@@ -38,19 +37,18 @@ namespace Flutter.Support.ApiRepository.Repositories
                 parames += $"{(i > 0 ? "&" : "")}{curproperty.Name.ToLower()}={curproperty.GetValue(input, null)}";
             }
             //ApiLogHelper.Logger.Debug($"GET URL：{url}\r\n参数：{parames}");
-            var result = await apiContext.GetAsync<TResult>($"{urlTitle}/{url}?{parames}");
+            var result = await apiContext.GetAsync<TResult>($"{url}?{parames}");
             //if (!result.Success) throw new UserFriendlyException(result.Error.Message);
             return result;
         }
 
         public async Task<TResult> PostAsync<TInput, TResult>(TInput input)
             where TInput : IApiInputDto
-            where TResult :class, IApiResultDto
+            where TResult : class, IApiResultDto
         {
             var attribute = GetApiUrl<TInput>();
-            var urlTitle = "http://v.juhe.cn";
             var url = attribute.GetUrl();
-            var result = await apiContext.PostAsync<TResult>($"{urlTitle}/{url}", input);
+            var result = await apiContext.PostAsync<TResult>($"{url}", input);
             return result;
 
         }
