@@ -2,6 +2,7 @@
 using Flutter.Support.Domain.IApiRepositories.JuHe.InputDto;
 using Flutter.Support.Domain.IApiRepositories.JuHe.OutputDto;
 using Flutter.Support.Domain.IRepositories;
+using Flutter.Support.SqlSugar.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -22,29 +23,51 @@ namespace Flutter.Support.Application.News.Services
             this.juHeApiRepository = juHeApiRepository;
             this.newsRepository = newsRepository;
         }
-        public async Task NewsQuery(string type)
+
+        public async Task InsertNews(NewsTypeEnum type = NewsTypeEnum.top)
         {
-            var input = new JuHeTopNewsInputDto { Type = type };
-            var apiResult = await juHeApiRepository.
-                GetAsync<JuHeTopNewsInputDto, JuHeTopNewsApiResultOutputDto>(input);
-            
-            
-            if (apiResult.Result.List.Any())
+            for (int i = 0; i <= (int)NewsTypeEnum.caijing; i++)
             {
-                apiResult.Result.List.ForEach(async x =>
-                    await newsRepository.TryInsertRecordAsync(
-                    new Entities.News(x.Title,
-                                      x.UniqueKey,
-                                      x.Category,
-                                      x.Url,
-                                      x.Date,
-                                      JsonConvert.SerializeObject(x.ImageUrls),
-                                      x.AuthorName)
-                    ));
-                //var model = new Entities.News("test", "1234", "top", "", "");
-                //await newsRepository.TryInsertRecordAsync(model);
+                var currentType = (NewsTypeEnum)i;
+                var input = new JuHeTopNewsInputDto { Type = currentType.ToString() };
+                var apiResult = await juHeApiRepository.
+                    GetAsync<JuHeTopNewsInputDto, JuHeTopNewsApiResultOutputDto>(input);
+
+                if (apiResult.Result.List.Any())
+                {
+                    var existsNews = newsRepository.GetNews(x => x.Date.Date.Equals(DateTime.Now.Date));
+                    var existsUniqueKeys = existsNews.Select(x => x.UniqueKey);
+
+                    apiResult.Result.List.RemoveAll(x => existsUniqueKeys.Contains(x.UniqueKey));
+                    newsRepository.InsertNews(apiResult.Result.List, currentType);
+                }
             }
 
         }
+        //public async Task NewsQuery(string type)
+        //{
+        //    var input = new JuHeTopNewsInputDto { Type = type };
+        //    var apiResult = await juHeApiRepository.
+        //        GetAsync<JuHeTopNewsInputDto, JuHeTopNewsApiResultOutputDto>(input);
+
+
+
+        //    if (apiResult.Result.List.Any())
+        //    {
+        //        apiResult.Result.List.ForEach(async x =>
+        //            await newsRepository.TryInsertRecordAsync(
+        //            new Entities.News(x.Title,
+        //                              x.UniqueKey,
+        //                              x.Category,
+        //                              x.Url,
+        //                              x.Date,
+        //                              JsonConvert.SerializeObject(x.ImageUrls),
+        //                              x.AuthorName)
+        //            ));
+        //        //var model = new Entities.News("test", "1234", "top", "", "");
+        //        //await newsRepository.TryInsertRecordAsync(model);
+        //    }
+
+        //}
     }
 }

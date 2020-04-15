@@ -27,5 +27,7 @@ namespace Flutter.Support.QueryServices.News.Dto
 
         //public IEnumerable<string> ImageUrls { get; set; }
         public string JsonData { get; set; }
+
+        public int Type { get; set; }
     }
 }

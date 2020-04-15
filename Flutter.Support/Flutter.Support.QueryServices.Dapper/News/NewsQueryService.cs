@@ -1,18 +1,12 @@
-﻿using Dapper;
-using Flutter.Support.Dapper;
-using Flutter.Support.QueryServices.News;
+﻿using Flutter.Support.QueryServices.News;
 using Flutter.Support.QueryServices.News.Dto;
 using Flutter.Support.SqlSugar;
 using SqlSugar;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Flutter.Support.QueryServices.Dapper.News
 {
-    public class NewsQueryService : DbContext<Entities.News>,//AbstractDomains, 
+    public class NewsQueryService : DbContext<SqlSugar.Entities.News>,//AbstractDomains, 
         INewsQueryService
     {
         //public NewsQueryService(IConnectionStringResolver connectionStringResolver) : base(connectionStringResolver)
@@ -32,13 +26,22 @@ namespace Flutter.Support.QueryServices.Dapper.News
 
         //    return result;
         //}
-        public async Task<List<Entities.News>> GetNews()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<NewsQueryDto> GetNews(int pageSize, int pageIndex, int type)
         {
-            //var result = CurrentDb.GetList();
-            var result = new NewsQueryDto();
-            result.TotalCount = CurrentDb.Count(x => !x.DelStatus);
-            result.List = Db.Queryable<NewsInfoQueryDto>().AS("News").ToList();
-            return new List<Entities.News>();
+            var totalCount = 0;
+            var list = Db.Queryable<NewsInfoQueryDto>().Where(x => x.Type == type).AS("News")
+                .OrderBy(x => x.Date, OrderByType.Desc).ToPageList(pageIndex, pageSize, ref totalCount);
+
+            var result = new NewsQueryDto
+            {
+                TotalCount = totalCount,
+                List = list
+            };
+            return result;
         }
     }
 }

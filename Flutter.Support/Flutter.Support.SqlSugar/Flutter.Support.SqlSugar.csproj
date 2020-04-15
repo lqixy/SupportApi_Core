@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Flutter.Support.Entities\Flutter.Support.Entities.csproj" />
     <ProjectReference Include="..\Flutter.Support.Extension\Flutter.Support.Extension.csproj" />
   </ItemGroup>
 

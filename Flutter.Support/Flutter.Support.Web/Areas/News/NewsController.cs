@@ -18,7 +18,6 @@ namespace Flutter.Support.Web.Areas.News
     [Route("api/news")]
     public class NewsController : FlutterSupportControllerBase
     {
-        private readonly INewsApplicationService newsApplicationService;
         private readonly INewsQueryService newsQueryService;
         private readonly IMapper mapper;
         /// <summary>
@@ -27,26 +26,11 @@ namespace Flutter.Support.Web.Areas.News
         /// <param name="newsApplicationService"></param>
         /// <param name="newsQueryService"></param>
         /// <param name="mapper"></param>
-        public NewsController(INewsApplicationService newsApplicationService
-            , INewsQueryService newsQueryService
+        public NewsController(INewsQueryService newsQueryService
             , IMapper mapper)
         {
-            this.newsApplicationService = newsApplicationService;
             this.newsQueryService = newsQueryService;
             this.mapper = mapper;
-        }
-
-        /// <summary>
-        /// 新闻查询
-        /// </summary>
-        /// <param name="viewModel"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("save")]
-        public async Task<ResultObject> NewsSave(NewsQueryViewModel viewModel)
-        {
-            await newsApplicationService.NewsQuery(viewModel.type);
-            return ResultObject.Successed();
         }
 
         /// <summary>
@@ -58,8 +42,7 @@ namespace Flutter.Support.Web.Areas.News
         [Route("query")]
         public async Task<NewsQueryOutput> NewsQuery(NewsQueryViewModel viewModel)
         {
-            //var result = await newsQueryService.QueryNews();
-            var result = await newsQueryService.GetNews();
+            var result = await newsQueryService.GetNews(viewModel.PageSize, viewModel.PageIndex, (int)viewModel.Type);
             return mapper.Map<NewsQueryOutput>(result);
         }
 

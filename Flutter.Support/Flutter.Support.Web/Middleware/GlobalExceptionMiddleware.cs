@@ -45,9 +45,13 @@ namespace Flutter.Support.Web.Middleware
             {
                 logger.LogError($"\r\n--------Error Begin--------");
                 logger.LogError($"\r\nError Detail: {ex.Message} \n {ex.StackTrace}");
-                logger.LogError($"\r\n--------Error End--------"); 
+                logger.LogError($"\r\n--------Error End--------");
 
                 result = new ResultObject(ex.Message);
+
+                context.Response.StatusCode = 200;
+                context.Response.ContentType = "application/json; charset=utf-8";
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
 
             }
             catch (Exception ex)
@@ -56,12 +60,12 @@ namespace Flutter.Support.Web.Middleware
                 logger.LogError($"系统发生未处理异常：{ex.StackTrace}");
                 logger.LogError($"\r\n--------Error End--------");
 
-                result = new ResultObject(message: ex.Message);
-            }
+                result = new ResultObject(message: "系统错误,请联系管理员!");
 
-            context.Response.StatusCode = 200;
-            context.Response.ContentType = "application/json; charset=utf-8";
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
+                context.Response.StatusCode = 200;
+                context.Response.ContentType = "application/json; charset=utf-8";
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
+            }
         }
     }
     ///// <summary>

@@ -1,12 +1,15 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Flutter.Support.HangfireService;
+using Flutter.Support.ApiRepository.Domain;
+using Flutter.Support.ApiRepository.Repositories;
+using Flutter.Support.Dapper;
+using Flutter.Support.Domain.IApiRepositories.JuHe;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Flutter.Support.Extension.Dependencies
+namespace Flutter.Support.Dependency.Dependencies
 {
     /// <summary>
     /// Core的AutoFac容器
@@ -43,7 +46,6 @@ namespace Flutter.Support.Extension.Dependencies
         /// <param name="builder"></param>
         public static void IocBuilder(this ContainerBuilder builder)
         {
-            var assemblies = ReflectionHelper.GetAllAssemblies();
 
             builder.RegisterType<ApiContext>().As<IApiContext>();
             builder.RegisterType<ApiHttpClient>().As<IApiHttpClient>();
@@ -51,6 +53,9 @@ namespace Flutter.Support.Extension.Dependencies
             //builder.RegisterType<NewsApplicationService>().As<INewsApplicationService>();
             builder.RegisterType<SqlServerDbProviderFactory>().As<IDbProviderFactory>();
             builder.RegisterType<DefaultConnectionStringResolver>().As<IConnectionStringResolver>();
+            //builder.RegisterType<InsertNewsToDbService>().As<IAutoService>();
+
+            var assemblies = ReflectionHelper.GetAllAssemblies();
             //注册仓储 && Service
             builder.RegisterAssemblyTypes(assemblies)
                 .Where(cc => cc.Name.EndsWith("Repository") |//筛选
@@ -58,7 +63,7 @@ namespace Flutter.Support.Extension.Dependencies
                 .PublicOnly()//只要public访问权限的
                 .Where(cc => cc.IsClass)//只要class型（主要为了排除值和interface类型）
                 .AsImplementedInterfaces();//自动以其实现的所有接口类型暴露（包括IDisposable接口）
-             
+
         }
     }
 }

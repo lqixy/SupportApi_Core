@@ -22,6 +22,9 @@
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Castle.Windsor" Version="5.0.1" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.10" />
+    <PackageReference Include="Hangfire.Dashboard.BasicAuthorization" Version="1.0.2" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.7.10" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="3.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.3.1" />
   </ItemGroup>
@@ -30,6 +33,7 @@
     <ProjectReference Include="..\Flutter.Support.ApiRepository\Flutter.Support.ApiRepository.csproj" />
     <ProjectReference Include="..\Flutter.Support.Application\Flutter.Support.Application.csproj" />
     <ProjectReference Include="..\Flutter.Support.Dapper\Flutter.Support.Dapper.csproj" />
+    <ProjectReference Include="..\Flutter.Support.Dependency\Flutter.Support.Dependency.csproj" />
     <ProjectReference Include="..\Flutter.Support.QueryServices.Dapper\Flutter.Support.QueryServices.Dapper.csproj" />
     <ProjectReference Include="..\Flutter.Support.QueryServices\Flutter.Support.QueryServices.csproj" />
     <ProjectReference Include="..\Flutter.Support.Repository\Flutter.Support.Repository.csproj" />

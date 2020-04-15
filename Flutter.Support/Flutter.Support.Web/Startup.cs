@@ -1,21 +1,13 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using Autofac;
 using AutoMapper;
-using Castle.Windsor;
-using Flutter.Support.ApiRepository.Domain;
-using Flutter.Support.ApiRepository.Repositories;
 using Flutter.Support.Application.News.Services;
-using Flutter.Support.Dapper;
-using Flutter.Support.Domain.IApiRepositories.JuHe;
-using Flutter.Support.Extension.Dependencies;
-using Flutter.Support.QueryServices.Dapper.News;
-using Flutter.Support.QueryServices.News;
-using Flutter.Support.Repository.Repositories;
+using Flutter.Support.Dependency.Dependencies;
+using Flutter.Support.Web.HangfireServices;
 using Flutter.Support.Web.Mappers;
 using Flutter.Support.Web.Middleware;
+using Hangfire;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
@@ -24,7 +16,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -33,6 +24,7 @@ namespace Flutter.Support.Web
     public class Startup
     {
         public static ILoggerRepository Repository { get; set; }
+        private const string CONFIGROOT = "HangfireConfig";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -81,23 +73,15 @@ namespace Flutter.Support.Web
             #endregion
 
             #region Hangfire 自动任务
-            ////注入hangfire
+            services.AddHangfire(Configuration);
+            //////注入hangfire
             //services.AddHangfire(x =>
             //{
-            //    var connectionString = Configuration.GetConnectionString("HangfireConnection");
-            //    x.UseSqlServerStorage(connectionString
-            //        //, new Hangfire.SqlServer.SqlServerStorageOptions
-            //        //{
-            //        //    CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-            //        //    SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-            //        //    QueuePollInterval = TimeSpan.Zero,
-            //        //    UseRecommendedIsolationLevel = true,
-            //        //    UsePageLocksOnDequeue = true,
-            //        //    DisableGlobalLocks = true
-            //        //}
-            //        );
+            //    //var configRoot = "HangfireConfig";
+            //    var storageType = Configuration[$"{CONFIGROOT}:StorageType"];
+            //    var connectionString = Configuration[$"HangfireConfig:ConnectionStrings:{storageType}"];
+            //    x.UseSqlServerStorage(connectionString);
             //});
-
             //services.AddHangfireServer();
             #endregion
 
@@ -116,13 +100,13 @@ namespace Flutter.Support.Web
         /// <param name="builder"></param>
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterType<ApiContext>().As<IApiContext>();
-            builder.RegisterType<ApiHttpClient>().As<IApiHttpClient>();
-            builder.RegisterType<JuHeApiRepository>().As<IJuHeApiRepository>();
-            //builder.RegisterType<NewsApplicationService>().As<INewsApplicationService>();
-            builder.RegisterType<SqlServerDbProviderFactory>().As<IDbProviderFactory>();
-            builder.RegisterType<DefaultConnectionStringResolver>().As<IConnectionStringResolver>();
-            builder.IocBuilder(); 
+            //builder.RegisterType<ApiContext>().As<IApiContext>();
+            //builder.RegisterType<ApiHttpClient>().As<IApiHttpClient>();
+            //builder.RegisterType<JuHeApiRepository>().As<IJuHeApiRepository>();
+            ////builder.RegisterType<NewsApplicationService>().As<INewsApplicationService>();
+            //builder.RegisterType<SqlServerDbProviderFactory>().As<IDbProviderFactory>();
+            //builder.RegisterType<DefaultConnectionStringResolver>().As<IConnectionStringResolver>();
+            builder.IocBuilder();
         }
 
         #endregion
@@ -139,6 +123,10 @@ namespace Flutter.Support.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            //hangfire
+            app.UseHangfire(Configuration);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -173,28 +161,7 @@ namespace Flutter.Support.Web
             loggerFactory.AddLog4Net();
 
             #region Hangfire
-            //app.UseHangfireServer();
-            //app.UseHangfireDashboard();
-
-            ////demo
-            //RecurringJob.AddOrUpdate(() => Console.WriteLine($"Asp.net Core Hangfire"), Cron.Minutely());
-            //RecurringJob.AddOrUpdate<IMessageService>(x => x.SendMessage("Send message"), Cron.Minutely);
-            //RecurringJob.AddOrUpdate<IMessageService>(x => x.ReceiveMessage("Receive message"), Cron.Minutely);
-
-            ////配置任务属性
-            //var jobOptions = new BackgroundJobServerOptions
-            //{
-            //    Queues = new[] { "test", "default" },//队列名称，只能为小写
-            //    WorkerCount = Environment.ProcessorCount * 5, //并发任务数
-            //    ServerName = "hangfire1",//服务器名称 
-            //};
-            //app.UseHangfireServer(jobOptions);
-            ////配置访问权限
-            //var options = new DashboardOptions
-            //{
-            //    Authorization = new[] { new HangfireAuthorizationFilter() }
-            //};
-            //app.UseHangfireDashboard("/hangfire", options);
+            AutoServiceCompute.Start();
 
             #endregion
 

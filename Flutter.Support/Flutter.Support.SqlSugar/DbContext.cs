@@ -1,5 +1,5 @@
-﻿using Flutter.Support.Entities;
-using Flutter.Support.Extension.Configurations;
+﻿using Flutter.Support.Extension.Configurations;
+using Flutter.Support.SqlSugar.Entities;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
