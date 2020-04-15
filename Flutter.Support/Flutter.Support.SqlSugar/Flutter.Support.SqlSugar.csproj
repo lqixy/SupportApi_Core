@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="sqlSugarCore" Version="5.0.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Flutter.Support.Entities\Flutter.Support.Entities.csproj" />
+    <ProjectReference Include="..\Flutter.Support.Extension\Flutter.Support.Extension.csproj" />
   </ItemGroup>
 
 </Project>

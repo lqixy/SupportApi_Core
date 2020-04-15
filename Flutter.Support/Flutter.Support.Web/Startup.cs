@@ -13,6 +13,7 @@ using Flutter.Support.Domain.IApiRepositories.JuHe;
 using Flutter.Support.Extension.Dependencies;
 using Flutter.Support.QueryServices.Dapper.News;
 using Flutter.Support.QueryServices.News;
+using Flutter.Support.Repository.Repositories;
 using Flutter.Support.Web.Mappers;
 using Flutter.Support.Web.Middleware;
 using log4net;
@@ -121,7 +122,6 @@ namespace Flutter.Support.Web
             //builder.RegisterType<NewsApplicationService>().As<INewsApplicationService>();
             builder.RegisterType<SqlServerDbProviderFactory>().As<IDbProviderFactory>();
             builder.RegisterType<DefaultConnectionStringResolver>().As<IConnectionStringResolver>();
-            
             builder.IocBuilder(); 
         }
 

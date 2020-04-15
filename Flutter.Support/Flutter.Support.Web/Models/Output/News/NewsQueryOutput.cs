@@ -17,7 +17,7 @@ namespace Flutter.Support.Web.Models.Output.News
         /// <summary>
         /// 
         /// </summary>
-        public IEnumerable<NewsInfoOutput> News { get; set; }
+        public IEnumerable<NewsInfoOutput> List { get; set; }
 
     }
 

@@ -1,4 +1,5 @@
 ﻿using Flutter.Support.Dapper;
+using Flutter.Support.SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;

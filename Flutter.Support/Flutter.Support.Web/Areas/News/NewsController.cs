@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Flutter.Support.Application.News.Dtos;
 using Flutter.Support.Application.News.Services;
 using Flutter.Support.QueryServices.News;
 using Flutter.Support.Web.Filters;
+using Flutter.Support.Web.Models.Output;
 using Flutter.Support.Web.Models.Output.News;
 using Flutter.Support.Web.Models.ViewModel;
 using log4net;
@@ -25,6 +25,7 @@ namespace Flutter.Support.Web.Areas.News
         /// 
         /// </summary>
         /// <param name="newsApplicationService"></param>
+        /// <param name="newsQueryService"></param>
         /// <param name="mapper"></param>
         public NewsController(INewsApplicationService newsApplicationService
             , INewsQueryService newsQueryService
@@ -42,11 +43,10 @@ namespace Flutter.Support.Web.Areas.News
         /// <returns></returns>
         [HttpPost]
         [Route("save")]
-        public async Task NewsSave(NewsQueryViewModel viewModel)
+        public async Task<ResultObject> NewsSave(NewsQueryViewModel viewModel)
         {
             await newsApplicationService.NewsQuery(viewModel.type);
-            //var result = mapper.Map<NewsQueryOutput>(dto);
-            //return result;
+            return ResultObject.Successed();
         }
 
         /// <summary>
@@ -58,9 +58,9 @@ namespace Flutter.Support.Web.Areas.News
         [Route("query")]
         public async Task<NewsQueryOutput> NewsQuery(NewsQueryViewModel viewModel)
         {
-            await newsQueryService.QueryNews();
-
-            return new NewsQueryOutput();
+            //var result = await newsQueryService.QueryNews();
+            var result = await newsQueryService.GetNews();
+            return mapper.Map<NewsQueryOutput>(result);
         }
 
     }

@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Flutter.Support.Dapper\Flutter.Support.Dapper.csproj" />
     <ProjectReference Include="..\Flutter.Support.QueryServices\Flutter.Support.QueryServices.csproj" />
+    <ProjectReference Include="..\Flutter.Support.SqlSugar\Flutter.Support.SqlSugar.csproj" />
   </ItemGroup>
 
 </Project>

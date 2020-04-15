@@ -35,13 +35,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Extension",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.AutoService", "Flutter.Support.AutoService\Flutter.Support.AutoService.csproj", "{8083A429-D7DD-42FC-B0AE-A45CA5ED4BE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flutter.Support.Dapper", "Flutter.Support.Dapper\Flutter.Support.Dapper.csproj", "{4FA24F16-D29F-418E-A383-1B222005699D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Dapper", "Flutter.Support.Dapper\Flutter.Support.Dapper.csproj", "{4FA24F16-D29F-418E-A383-1B222005699D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flutter.Support.QueryServices", "Flutter.Support.QueryServices\Flutter.Support.QueryServices.csproj", "{E4AE0196-3189-4DD1-8466-3AAA72D6B527}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.QueryServices", "Flutter.Support.QueryServices\Flutter.Support.QueryServices.csproj", "{E4AE0196-3189-4DD1-8466-3AAA72D6B527}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flutter.Support.QueryServices.Dapper", "Flutter.Support.QueryServices.Dapper\Flutter.Support.QueryServices.Dapper.csproj", "{1BBE70C7-48FB-453B-8B78-9A5EDA1650D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.QueryServices.Dapper", "Flutter.Support.QueryServices.Dapper\Flutter.Support.QueryServices.Dapper.csproj", "{1BBE70C7-48FB-453B-8B78-9A5EDA1650D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flutter.Support.Repository", "Flutter.Support.Repository\Flutter.Support.Repository.csproj", "{FE89E611-B10A-4BCB-AFCF-D168C1BD0934}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Repository", "Flutter.Support.Repository\Flutter.Support.Repository.csproj", "{FE89E611-B10A-4BCB-AFCF-D168C1BD0934}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flutter.Support.Entities", "Flutter.Support.Entities\Flutter.Support.Entities.csproj", "{A4167CBD-1A1E-4E86-B121-27D5796E55DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flutter.Support.SqlSugar", "Flutter.Support.SqlSugar\Flutter.Support.SqlSugar.csproj", "{7D47266F-6F3E-4048-907E-048C07B6BA30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +101,14 @@ Global
 		{FE89E611-B10A-4BCB-AFCF-D168C1BD0934}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE89E611-B10A-4BCB-AFCF-D168C1BD0934}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE89E611-B10A-4BCB-AFCF-D168C1BD0934}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4167CBD-1A1E-4E86-B121-27D5796E55DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4167CBD-1A1E-4E86-B121-27D5796E55DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4167CBD-1A1E-4E86-B121-27D5796E55DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4167CBD-1A1E-4E86-B121-27D5796E55DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D47266F-6F3E-4048-907E-048C07B6BA30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D47266F-6F3E-4048-907E-048C07B6BA30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D47266F-6F3E-4048-907E-048C07B6BA30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D47266F-6F3E-4048-907E-048C07B6BA30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +126,8 @@ Global
 		{E4AE0196-3189-4DD1-8466-3AAA72D6B527} = {3BC29A07-2071-493D-8CB3-16549B4DD89D}
 		{1BBE70C7-48FB-453B-8B78-9A5EDA1650D4} = {DD636CFF-6902-4812-939B-706D5A3ECD67}
 		{FE89E611-B10A-4BCB-AFCF-D168C1BD0934} = {3BC29A07-2071-493D-8CB3-16549B4DD89D}
+		{A4167CBD-1A1E-4E86-B121-27D5796E55DA} = {3BC29A07-2071-493D-8CB3-16549B4DD89D}
+		{7D47266F-6F3E-4048-907E-048C07B6BA30} = {AFB71B24-D469-46A6-96AA-840EF8C79744}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D65EE2A7-2C1F-4A86-A6E2-426683811A71}

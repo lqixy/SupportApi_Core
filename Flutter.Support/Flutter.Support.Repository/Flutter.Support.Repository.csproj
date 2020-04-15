@@ -12,6 +12,8 @@
     <ProjectReference Include="..\Flutter.Support.Common\Flutter.Support.Common.csproj" />
     <ProjectReference Include="..\Flutter.Support.Dapper\Flutter.Support.Dapper.csproj" />
     <ProjectReference Include="..\Flutter.Support.Domain\Flutter.Support.Domain.csproj" />
+    <ProjectReference Include="..\Flutter.Support.Entities\Flutter.Support.Entities.csproj" />
+    <ProjectReference Include="..\Flutter.Support.SqlSugar\Flutter.Support.SqlSugar.csproj" />
   </ItemGroup>
 
 </Project>

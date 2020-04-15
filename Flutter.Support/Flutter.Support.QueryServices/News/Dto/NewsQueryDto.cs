@@ -1,18 +1,17 @@
-﻿using Flutter.Support.Application.ApplicationDtos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Flutter.Support.Application.News.Dtos
+namespace Flutter.Support.QueryServices.News.Dto
 {
-    public class NewsQueryDto : IApplicationDto
+    public class NewsQueryDto
     {
         public int TotalCount { get; set; }
 
-        public IEnumerable<NewsInfoDto> News { get; set; }
+        public IEnumerable<NewsInfoQueryDto> List { get; set; }
     }
 
-    public class NewsInfoDto  
+    public class NewsInfoQueryDto
     {
         public string UniqueKey { get; set; }
 
@@ -26,8 +25,7 @@ namespace Flutter.Support.Application.News.Dtos
 
         public string Url { get; set; }
 
-        public IEnumerable<string> ImageUrls { get; set; }
-
-
+        //public IEnumerable<string> ImageUrls { get; set; }
+        public string JsonData { get; set; }
     }
 }
