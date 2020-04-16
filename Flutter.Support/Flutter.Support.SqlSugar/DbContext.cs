@@ -1,4 +1,5 @@
-﻿using Flutter.Support.Extension.Configurations;
+﻿using Flutter.Support.Common.Strings;
+using Flutter.Support.Extension.Configurations;
 using Flutter.Support.SqlSugar.Entities;
 using SqlSugar;
 using System;
@@ -13,10 +14,12 @@ namespace Flutter.Support.SqlSugar
 
         public DbContext()
         {
+            var dbTypeStr = ConfigHelper.Get("SqlConfig:DbType");
+            Enum.TryParse(dbTypeStr, out DbType dbType);
             Db = new SqlSugarClient(new ConnectionConfig()
             {
-                ConnectionString = ConfigHelper.GetConnectionString("Default"),
-                DbType = DbType.SqlServer,
+                ConnectionString = ConfigHelper.GetConnectionString(dbTypeStr),
+                DbType = dbType,// DbType.SqlServer,
                 InitKeyType = InitKeyType.Attribute,//从特性读取主键和自增列信息
                 IsAutoCloseConnection = true,//开启自动释放模式和EF原理一样我就不多解释了
 

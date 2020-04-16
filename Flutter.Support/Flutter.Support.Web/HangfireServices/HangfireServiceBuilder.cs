@@ -1,6 +1,7 @@
 ﻿using Hangfire;
 using Hangfire.Dashboard;
 using Hangfire.Dashboard.BasicAuthorization;
+using Hangfire.MySql.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,10 +46,13 @@ namespace Flutter.Support.Web.HangfireServices
             ////注入hangfire
             services.AddHangfire(x =>
             {
-                //var configRoot = "HangfireConfig";
+                ////sqlserver
                 var storageType = configuration[$"{CONFIGROOT}:StorageType"];
-                var connectionString = configuration[$"HangfireConfig:ConnectionStrings:{storageType}"];
-                x.UseSqlServerStorage(connectionString);
+                //var connectionString = configuration[$"HangfireConfig:ConnectionStrings:{storageType}"];
+                //x.UseSqlServerStorage(connectionString);
+
+                //MySql
+                x.UseStorage(new MySqlStorage(configuration[$"HangfireConfig:ConnectionStrings:{storageType}"]));
             });
             services.AddHangfireServer();
         }

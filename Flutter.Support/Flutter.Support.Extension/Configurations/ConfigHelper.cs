@@ -26,6 +26,14 @@ namespace Flutter.Support.Extension.Configurations
             return config[key];
         }
 
+        public static int GetInt(string key)
+        {
+            var value = config[key];
+            var result = 0;
+            int.TryParse(value, out result);
+            return result;
+        }
+
         /// <summary>
         /// 获取ConnectionStrings下默认的配置连接字符串
         /// </summary>
