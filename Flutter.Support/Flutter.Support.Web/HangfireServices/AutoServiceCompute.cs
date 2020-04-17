@@ -1,4 +1,5 @@
 ﻿using Flutter.Support.Application.News.Services;
+using Flutter.Support.Extension.Configurations;
 using Flutter.Support.SqlSugar.Enums;
 using Hangfire;
 using System;
@@ -18,8 +19,9 @@ namespace Flutter.Support.Web.HangfireServices
         /// </summary>
         public static void Start()
         {
-
-            RecurringJob.AddOrUpdate<INewsApplicationService>(x => x.InsertNews(NewsTypeEnum.top), Cron.Hourly);
+            var i = ConfigHelper.GetInt("HangfireConfig:Enable");
+            if (i == 1)
+                RecurringJob.AddOrUpdate<INewsApplicationService>(x => x.InsertNews(NewsTypeEnum.top), Cron.Hourly);
 
         }
     }

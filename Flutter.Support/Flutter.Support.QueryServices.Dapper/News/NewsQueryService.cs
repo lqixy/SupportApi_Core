@@ -30,7 +30,7 @@ namespace Flutter.Support.QueryServices.Dapper.News
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<NewsQueryDto> GetNews(int pageSize, int pageIndex, int type)
+        public async Task<NewsQueryDto> GetNews(int pageSize=12, int pageIndex=1, int type=0)
         {
             var totalCount = 0;
             var list = Db.Queryable<NewsInfoQueryDto>().Where(x => x.Type == type).AS("News")

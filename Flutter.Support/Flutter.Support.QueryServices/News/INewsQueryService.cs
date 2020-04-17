@@ -6,6 +6,6 @@ namespace Flutter.Support.QueryServices.News
     public interface INewsQueryService
     {
         //Task<NewsQueryDto> QueryNews();
-        Task<NewsQueryDto> GetNews(int pageSize, int pageIndex, int type);
+        Task<NewsQueryDto> GetNews(int pageSize = 12, int pageIndex = 1, int type = 0);
     }
 }
