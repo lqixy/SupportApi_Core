@@ -23,6 +23,8 @@ namespace Flutter.Support.Domain.IApiRepositories.JuHe.OutputDto
         /// </summary>
         [JsonProperty(PropertyName = "error_code")]
         public int ErrorCode { get; set; }
+
+        public bool Success { get { return ErrorCode == 0; } }
     }
 
 

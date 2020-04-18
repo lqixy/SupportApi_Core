@@ -26,20 +26,20 @@ namespace Flutter.Support.Application.News.Services
 
         public async Task InsertNews(NewsTypeEnum type = NewsTypeEnum.top)
         {
-            for (int i = 0; i <= (int)NewsTypeEnum.caijing; i++)
+            //for (int i = 0; i <= (int)NewsTypeEnum.caijing; i++)
             {
-                var currentType = (NewsTypeEnum)i;
-                var input = new JuHeTopNewsInputDto { Type = currentType.ToString() };
+                //var currentType = (NewsTypeEnum)i;
+                var input = new JuHeTopNewsInputDto { Type = type.ToString() };
                 var apiResult = await juHeApiRepository.
                     GetAsync<JuHeTopNewsInputDto, JuHeTopNewsApiResultOutputDto>(input);
 
-                if (apiResult.Result.List.Any())
+                if (apiResult.Success && apiResult.Result.List.Any())
                 {
                     var existsNews = newsRepository.GetNews(x => x.Date.Date.Equals(DateTime.Now.Date));
                     var existsUniqueKeys = existsNews.Select(x => x.UniqueKey);
 
                     apiResult.Result.List.RemoveAll(x => existsUniqueKeys.Contains(x.UniqueKey));
-                    newsRepository.InsertNews(apiResult.Result.List, currentType);
+                    newsRepository.InsertNews(apiResult.Result.List, type);
                 }
             }
 

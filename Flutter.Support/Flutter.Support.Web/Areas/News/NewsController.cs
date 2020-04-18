@@ -19,18 +19,15 @@ namespace Flutter.Support.Web.Areas.News
     public class NewsController : FlutterSupportControllerBase
     {
         private readonly INewsQueryService newsQueryService;
-        private readonly IMapper mapper;
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="newsApplicationService"></param>
-        /// <param name="newsQueryService"></param>
         /// <param name="mapper"></param>
-        public NewsController(INewsQueryService newsQueryService
-            , IMapper mapper)
+        /// <param name="newsQueryService"></param>
+        public NewsController(IMapper mapper
+            , INewsQueryService newsQueryService) : base(mapper)
         {
             this.newsQueryService = newsQueryService;
-            this.mapper = mapper;
         }
 
         /// <summary>

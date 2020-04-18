@@ -9,7 +9,7 @@ namespace Flutter.Support.Web.Models.ViewModel
     /// <summary>
     /// 
     /// </summary>
-    public class NewsQueryViewModel
+    public class NewsQueryViewModel: QueryPagerViewModelBase
     {
         /// <summary>
         /// 类型,,top(头条，默认),
@@ -20,14 +20,7 @@ namespace Flutter.Support.Web.Models.ViewModel
         /// </summary>
         [ValidEnumValueAttribute(ErrorMessage = "新闻类型为:0--4")]
         public NewsTypeViewModelEnum Type { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int PageIndex { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int PageSize { get; set; }
+       
     }
     /// <summary>
     /// 
