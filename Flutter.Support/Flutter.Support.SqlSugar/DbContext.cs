@@ -28,6 +28,8 @@ namespace Flutter.Support.SqlSugar
 
         public SimpleClient<News> NewsDb { get { return new SimpleClient<News>(Db); } }
 
+        public SimpleClient<Weather> WeatherDb { get { return new SimpleClient<Weather>(Db); } }
+
         public SimpleClient<T> CurrentDb => new SimpleClient<T>(Db);
     }
 }

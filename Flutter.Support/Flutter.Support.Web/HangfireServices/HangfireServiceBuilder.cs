@@ -1,4 +1,7 @@
-﻿using Hangfire;
+﻿using Flutter.Support.Application.News.Services;
+using Flutter.Support.Extension.Configurations;
+using Flutter.Support.SqlSugar.Enums;
+using Hangfire;
 using Hangfire.Dashboard;
 using Hangfire.Dashboard.BasicAuthorization;
 using Hangfire.MySql.Core;
@@ -39,6 +42,14 @@ namespace Flutter.Support.Web.HangfireServices
             {
                 Authorization = new[] { authorFilter }
             });
+
+            var i = ConfigHelper.GetInt("HangfireConfig:Enable");
+            if (i == 1)
+            {
+                //RecurringJob.AddOrUpdate<INewsApplicationService>(x => x.InsertNews(NewsTypeEnum.top), Cron.Hourly);
+                //RecurringJob.AddOrUpdate<INewsApplicationService>(x => x.DeleteNews(), Cron.Weekly(DayOfWeek.Monday), TimeZoneInfo.Local);
+            }
+
         }
 
         public static void AddHangfire(this IServiceCollection services, IConfiguration configuration)
