@@ -17,8 +17,8 @@ namespace Flutter.Support.Web.HangfireServices
 
         public static void UseHangfire(this IApplicationBuilder app, IConfiguration configuration)
         {
-            //配置访问权限
-            app.UseHangfireServer();
+            ////配置访问权限
+            //app.UseHangfireServer();
             //访问权限
             var authorFilter = new BasicAuthAuthorizationFilter(
                 new BasicAuthAuthorizationFilterOptions
