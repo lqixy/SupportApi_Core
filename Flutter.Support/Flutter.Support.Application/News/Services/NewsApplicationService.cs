@@ -24,6 +24,13 @@ namespace Flutter.Support.Application.News.Services
             this.newsRepository = newsRepository;
         }
 
+        public void DeleteNews()
+        {
+            var date = DateTime.Now.AddDays(-3).Date;
+
+            newsRepository.DeleteNews(date);
+        }
+
         public async Task InsertNews(NewsTypeEnum type = NewsTypeEnum.top)
         {
             //for (int i = 0; i <= (int)NewsTypeEnum.caijing; i++)

@@ -21,8 +21,10 @@ namespace Flutter.Support.Web.HangfireServices
         {
             var i = ConfigHelper.GetInt("HangfireConfig:Enable");
             if (i == 1)
+            {
                 RecurringJob.AddOrUpdate<INewsApplicationService>(x => x.InsertNews(NewsTypeEnum.top), Cron.Hourly);
-
+                RecurringJob.AddOrUpdate<INewsApplicationService>(x => x.DeleteNews(), Cron.Weekly(DayOfWeek.Monday), TimeZoneInfo.Local);
+            }
         }
     }
 }

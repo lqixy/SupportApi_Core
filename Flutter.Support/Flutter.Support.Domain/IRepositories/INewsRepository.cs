@@ -16,5 +16,7 @@ namespace Flutter.Support.Domain.IRepositories
         //Task TryInsertRecordAsync(News model);
 
         void InsertNews(List<JuHeNewsInfoOutDto> list,NewsTypeEnum type);
+
+        void DeleteNews(DateTime date);
     }
 }

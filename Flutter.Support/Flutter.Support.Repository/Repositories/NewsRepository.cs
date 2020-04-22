@@ -19,27 +19,10 @@ namespace Flutter.Support.Repository.Repositories
     public class NewsRepository : DbContext<News>,// AbstractDenormalizer, 
         INewsRepository
     {
-        //public NewsRepository(IConnectionStringResolver connectionStringResolver) : base(connectionStringResolver)
-        //{
-        //}
-
-        //public Task TryInsertRecordAsync(News model)
-        //{
-        //    return base.TryInsertRecordAsync(async connection =>
-        //    {
-        //        return await connection.InsertAsync(new
-        //        {
-        //            UniqueKey = model.UniqueKey,
-        //            Title = model.Title,
-        //            Category = model.Category,
-        //            Url = model.Url,
-        //            JsonData = model.JsonData,
-        //            AddDate = DateTime.Now,
-        //            DelStatus = model.DelStatus,
-        //            Date = model.Date
-        //        }, TableNames.News);
-        //    });
-        //}
+        public void DeleteNews(DateTime date)
+        {
+            CurrentDb.Delete(x => x.AddDate <= date);
+        }
 
         public IEnumerable<News> GetNews(Expression<Func<News, bool>> whereExpression)
         {
