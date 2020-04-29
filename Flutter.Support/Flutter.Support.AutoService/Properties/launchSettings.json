@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Flutter.Support.AutoService": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

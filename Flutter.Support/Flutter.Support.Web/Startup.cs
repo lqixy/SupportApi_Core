@@ -2,12 +2,9 @@ using System;
 using System.IO;
 using Autofac;
 using AutoMapper;
-using Flutter.Support.Application.News.Services;
 using Flutter.Support.Dependency.Dependencies;
-using Flutter.Support.Web.HangfireServices;
 using Flutter.Support.Web.Mappers;
 using Flutter.Support.Web.Middleware;
-using Hangfire;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
@@ -24,7 +21,7 @@ namespace Flutter.Support.Web
     public class Startup
     {
         public static ILoggerRepository Repository { get; set; }
-        private const string CONFIGROOT = "HangfireConfig";
+        //private const string CONFIGROOT = "HangfireConfig";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -73,7 +70,7 @@ namespace Flutter.Support.Web
             #endregion
 
             #region Hangfire 自动任务
-            services.AddHangfire(Configuration);
+            //services.AddHangfire(Configuration);
             //////注入hangfire
             //services.AddHangfire(x =>
             //{
@@ -125,7 +122,7 @@ namespace Flutter.Support.Web
             }
 
             //hangfire
-            app.UseHangfire(Configuration);
+            //app.UseHangfire(Configuration);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -161,7 +158,7 @@ namespace Flutter.Support.Web
             loggerFactory.AddLog4Net();
 
             #region Hangfire
-            AutoServiceCompute.Start();
+            //AutoServiceCompute.Start();
 
             #endregion
 
