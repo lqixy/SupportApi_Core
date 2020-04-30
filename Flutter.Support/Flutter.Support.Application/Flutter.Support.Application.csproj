@@ -14,6 +14,7 @@
     <ProjectReference Include="..\Flutter.Support.Common\Flutter.Support.Common.csproj" />
     <ProjectReference Include="..\Flutter.Support.Domain\Flutter.Support.Domain.csproj" />
     <ProjectReference Include="..\Flutter.Support.Extension\Flutter.Support.Extension.csproj" />
+    <ProjectReference Include="..\Flutter.Support.QueryServices\Flutter.Support.QueryServices.csproj" />
   </ItemGroup>
 
 </Project>

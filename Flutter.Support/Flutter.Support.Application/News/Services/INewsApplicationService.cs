@@ -1,4 +1,5 @@
-﻿using Flutter.Support.SqlSugar.Enums;
+﻿using Flutter.Support.QueryServices.News.Dto;
+using Flutter.Support.SqlSugar.Enums;
 using System.Threading.Tasks;
 
 namespace Flutter.Support.Application.News.Services
@@ -16,6 +17,8 @@ namespace Flutter.Support.Application.News.Services
         /// 
         /// </summary>
         /// <returns></returns>
-        void DeleteNews();
+        void DeleteNews(int day);
+
+        Task<NewsQueryDto> GetNews(int pageSize, int pageIndex, int type = 0);
     }
 }

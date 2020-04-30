@@ -2,6 +2,8 @@
 using Flutter.Support.Domain.IApiRepositories.JuHe.InputDto;
 using Flutter.Support.Domain.IApiRepositories.JuHe.OutputDto;
 using Flutter.Support.Domain.IRepositories;
+using Flutter.Support.QueryServices.News;
+using Flutter.Support.QueryServices.News.Dto;
 using Flutter.Support.SqlSugar.Enums;
 using Newtonsoft.Json;
 using System;
@@ -16,19 +18,35 @@ namespace Flutter.Support.Application.News.Services
     {
         private readonly IJuHeApiRepository juHeApiRepository;
         private readonly INewsRepository newsRepository;
+        private readonly INewsQueryService newsQueryService;
 
         public NewsApplicationService(IJuHeApiRepository juHeApiRepository
-            , INewsRepository newsRepository)
+            , INewsRepository newsRepository
+            , INewsQueryService newsQueryService)
         {
             this.juHeApiRepository = juHeApiRepository;
             this.newsRepository = newsRepository;
+            this.newsQueryService = newsQueryService;
         }
 
-        public void DeleteNews()
+        public void DeleteNews(int day)
         {
-            var date = DateTime.Now.AddDays(-3).Date;
+            var date = DateTime.Now.AddDays(Math.Abs(day)).Date;
 
             newsRepository.DeleteNews(date);
+        }
+
+        public async Task<NewsQueryDto> GetNews(int pageSize, int pageIndex, int type = 0)
+        {
+            var now = DateTime.Now;
+            var firstDate = newsQueryService.GetFirstDateTime(type);
+
+            if (firstDate == null || (now - firstDate.Value).TotalMinutes >= 30)
+            {
+                await InsertNews((NewsTypeEnum)type);
+            }
+
+            return await newsQueryService.GetNews(pageSize, pageIndex, type);
         }
 
         public async Task InsertNews(NewsTypeEnum type = NewsTypeEnum.top)
