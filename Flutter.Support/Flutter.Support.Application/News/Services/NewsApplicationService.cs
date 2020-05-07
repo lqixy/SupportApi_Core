@@ -52,10 +52,23 @@ namespace Flutter.Support.Application.News.Services
             var now = DateTime.Now;
 
             var first = newsRepository.FirstOrDefault(x => x.Type == (int)type, x => x.Date);
-            if (first != null && (now.Date - first.Date.Date).TotalMinutes >= 30)
+            if (first != null && (now - first.Date).TotalMinutes >= 30)
             {
                 await InsertNews(type);
             }
+
+            return GetNews(pageSize, pageIndex, type); 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public NewsQueryDto GetNews(int pageSize = 12, int pageIndex = 1, int type = 0)
+        {
 
             var totalCount = 0;
             var list = newsRepository.Query(ref totalCount, type, pageSize, pageIndex);
