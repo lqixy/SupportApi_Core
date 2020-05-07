@@ -37,9 +37,9 @@ namespace Flutter.Support.Application.Weather
             if (weather == null || (DateTime.Now - weather.AddDate).TotalHours >= 6)
             {
                 await weatherApplicationService.InsertWeather(city);
-            }
 
-            weather = weatherRepository.Query(city);
+                weather = weatherRepository.Query(city);
+            }
 
             return new WeatherQueryDto
             {
