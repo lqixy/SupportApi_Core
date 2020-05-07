@@ -29,6 +29,7 @@ namespace Flutter.Support.HostedServer
                 {
                     services.RegisterTypes();
                     services.AddHostedService<NewsAutoService>();
+                    services.AddHostedService<DeleteNewsAutoService>();
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {

@@ -18,7 +18,7 @@ namespace Flutter.Support.SqlSugar.Entities
                     DateTime date,
                     string jsonData,
                     string authorName,
-                    NewsTypeEnum type) : base()
+                    int type) : base()
         {
             Title = title;
             UniqueKey = uniqueKey;
@@ -27,7 +27,7 @@ namespace Flutter.Support.SqlSugar.Entities
             AuthorName = authorName;
             Url = url;
             Date = date;
-            Type = (int)type;
+            Type = type;
         }
 
         public string Title { get; set; }
@@ -41,7 +41,7 @@ namespace Flutter.Support.SqlSugar.Entities
         public string JsonData { get; set; }
         public string AuthorName { get; }
         /// <summary>
-        /// 类型,,top(头条，默认),shehui(社会),guonei(国内),guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
+        /// 类型, top(头条，默认),shehui(社会),guonei(国内),guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
         /// </summary>
         public int Type { get; set; }
 

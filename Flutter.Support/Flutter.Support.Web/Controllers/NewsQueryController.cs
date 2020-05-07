@@ -1,5 +1,4 @@
-﻿using Flutter.Support.QueryServices.News;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +8,17 @@ namespace Flutter.Support.Web.Controllers
 {
     public class NewsQueryController : Controller
     {
-        private readonly INewsQueryService newsQueryService;
+        //private readonly INewsQueryService newsQueryService;
 
-        public NewsQueryController(INewsQueryService newsQueryService)
-        {
-            this.newsQueryService = newsQueryService;
-        }
+        //public NewsQueryController(INewsQueryService newsQueryService)
+        //{
+        //    this.newsQueryService = newsQueryService;
+        //}
 
-        public IActionResult Index()
-        {
-            var list = newsQueryService.GetNews();
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    var list = newsQueryService.GetNews();
+        //    return View();
+        //}
     }
 }

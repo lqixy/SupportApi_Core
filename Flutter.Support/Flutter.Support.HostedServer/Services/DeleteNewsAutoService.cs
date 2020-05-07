@@ -23,7 +23,9 @@ namespace Flutter.Support.HostedServer.Services
             {
                 var timer = ConfigHelper.GetInt("Timer");
                 LogHelper.Info($"删除新闻服务开始");
-                newsApplicationService.DeleteNews(3);
+
+                var date = DateTime.Now.AddDays(-3).Date; 
+                newsApplicationService.DeleteNews(x => x.Date <= date);
                 await Task.Delay(TimeSpan.FromMinutes(timer), stoppingToken);
             }
         }

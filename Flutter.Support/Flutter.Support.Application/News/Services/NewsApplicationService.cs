@@ -1,14 +1,15 @@
-﻿using Flutter.Support.Domain.IApiRepositories.JuHe;
+﻿using AutoMapper;
+using Flutter.Support.Domain.Dtos;
+using Flutter.Support.Domain.IApiRepositories.JuHe;
 using Flutter.Support.Domain.IApiRepositories.JuHe.InputDto;
 using Flutter.Support.Domain.IApiRepositories.JuHe.OutputDto;
 using Flutter.Support.Domain.IRepositories;
-using Flutter.Support.QueryServices.News;
-using Flutter.Support.QueryServices.News.Dto;
 using Flutter.Support.SqlSugar.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,81 +19,85 @@ namespace Flutter.Support.Application.News.Services
     {
         private readonly IJuHeApiRepository juHeApiRepository;
         private readonly INewsRepository newsRepository;
-        private readonly INewsQueryService newsQueryService;
+        private readonly IMapper mapper;
 
         public NewsApplicationService(IJuHeApiRepository juHeApiRepository
             , INewsRepository newsRepository
-            , INewsQueryService newsQueryService)
+            , IMapper mapper
+            )
         {
             this.juHeApiRepository = juHeApiRepository;
             this.newsRepository = newsRepository;
-            this.newsQueryService = newsQueryService;
+            this.mapper = mapper;
         }
 
-        public void DeleteNews(int day)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="day"></param>
+        public void DeleteNews(Expression<Func<SqlSugar.Entities.News,bool>> whereExpression)
         {
-            var date = DateTime.Now.AddDays(Math.Abs(day)).Date;
-
-            newsRepository.DeleteNews(date);
+            newsRepository.DeleteNews(whereExpression);
         }
 
-        public async Task<NewsQueryDto> GetNews(int pageSize, int pageIndex, int type = 0)
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public async Task<NewsQueryDto> Query(int pageSize = 12, int pageIndex = 1, int type = 0)
         {
             var now = DateTime.Now;
-            var firstDate = newsQueryService.GetFirstDateTime(type);
 
-            if (firstDate == null || (now - firstDate.Value).TotalMinutes >= 30)
+            var first = newsRepository.FirstOrDefault(x => x.Type == (int)type, x => x.Date);
+            if (first != null && (now.Date - first.Date.Date).TotalMinutes >= 30)
             {
-                await InsertNews((NewsTypeEnum)type);
+                await InsertNews(type);
             }
 
-            return await newsQueryService.GetNews(pageSize, pageIndex, type);
+            var totalCount = 0;
+            var list = newsRepository.Query(ref totalCount, type, pageSize, pageIndex);
+
+            var result = new NewsQueryDto
+            {
+                TotalCount = totalCount,
+                List = list.Select(x => mapper.Map<NewsInfoQueryDto>(x)).ToList()
+            };
+            return result;
         }
 
-        public async Task InsertNews(NewsTypeEnum type = NewsTypeEnum.top)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public async Task InsertNews(int type = 0)
         {
             //for (int i = 0; i <= (int)NewsTypeEnum.caijing; i++)
+            //{
+            //var currentType = (NewsTypeEnum)i;
+            var input = new JuHeTopNewsInputDto { Type = type.ToString() };
+            var apiResult = await juHeApiRepository.
+                GetAsync<JuHeTopNewsInputDto, JuHeTopNewsApiResultOutputDto>(input);
+
+            if (apiResult.Success && apiResult.Result.List.Any())
             {
-                //var currentType = (NewsTypeEnum)i;
-                var input = new JuHeTopNewsInputDto { Type = type.ToString() };
-                var apiResult = await juHeApiRepository.
-                    GetAsync<JuHeTopNewsInputDto, JuHeTopNewsApiResultOutputDto>(input);
+                var existsNews = newsRepository.GetNews(x => x.Date.Date.Equals(DateTime.Now.Date));
+                var existsUniqueKeys = existsNews.Select(x => x.UniqueKey);
 
-                if (apiResult.Success && apiResult.Result.List.Any())
-                {
-                    var existsNews = newsRepository.GetNews(x => x.Date.Date.Equals(DateTime.Now.Date));
-                    var existsUniqueKeys = existsNews.Select(x => x.UniqueKey);
-
-                    apiResult.Result.List.RemoveAll(x => existsUniqueKeys.Contains(x.UniqueKey));
-                    newsRepository.InsertNews(apiResult.Result.List, type);
-                }
+                apiResult.Result.List.RemoveAll(x => existsUniqueKeys.Contains(x.UniqueKey));
+                newsRepository.InsertNews(apiResult.Result.List.Select(x => new SqlSugar.Entities.News(x.Title,
+                                                            x.UniqueKey,
+                                                            x.Category,
+                                                            x.Url,
+                                                            x.Date,
+                                                            JsonConvert.SerializeObject(x.ImageUrls),
+                                                            x.AuthorName, type)).ToList());
             }
+            //}
 
         }
-        //public async Task NewsQuery(string type)
-        //{
-        //    var input = new JuHeTopNewsInputDto { Type = type };
-        //    var apiResult = await juHeApiRepository.
-        //        GetAsync<JuHeTopNewsInputDto, JuHeTopNewsApiResultOutputDto>(input);
-
-
-
-        //    if (apiResult.Result.List.Any())
-        //    {
-        //        apiResult.Result.List.ForEach(async x =>
-        //            await newsRepository.TryInsertRecordAsync(
-        //            new Entities.News(x.Title,
-        //                              x.UniqueKey,
-        //                              x.Category,
-        //                              x.Url,
-        //                              x.Date,
-        //                              JsonConvert.SerializeObject(x.ImageUrls),
-        //                              x.AuthorName)
-        //            ));
-        //        //var model = new Entities.News("test", "1234", "top", "", "");
-        //        //await newsRepository.TryInsertRecordAsync(model);
-        //    }
-
-        //}
     }
 }

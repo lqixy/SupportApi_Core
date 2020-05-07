@@ -40,12 +40,13 @@
     <ProjectReference Include="..\Flutter.Support.Application\Flutter.Support.Application.csproj" />
     <ProjectReference Include="..\Flutter.Support.Dapper\Flutter.Support.Dapper.csproj" />
     <ProjectReference Include="..\Flutter.Support.Dependency\Flutter.Support.Dependency.csproj" />
-    <ProjectReference Include="..\Flutter.Support.QueryServices.Dapper\Flutter.Support.QueryServices.Dapper.csproj" />
-    <ProjectReference Include="..\Flutter.Support.QueryServices\Flutter.Support.QueryServices.csproj" />
     <ProjectReference Include="..\Flutter.Support.Repository\Flutter.Support.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
