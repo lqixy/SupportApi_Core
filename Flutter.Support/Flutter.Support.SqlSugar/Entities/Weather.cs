@@ -9,14 +9,36 @@ namespace Flutter.Support.SqlSugar.Entities
     /// </summary>
     public class Weather : Entity
     {
+        public Weather() { }
+
+        public Weather(string city,
+            string temperature,
+            string humidity,
+            string direct,
+            string power,
+            string aqi,
+            string info,
+            string future)
+        {
+            City = city;
+            Temperature = temperature;
+            Humidity = humidity;
+            Direct = direct;
+            Power = power;
+            Aqi = aqi;
+            Info = info;
+            Future = future;
+        }
+
+        public string City { get; set; }
         /// <summary>
         /// 温度
         /// </summary>
-        public double? Temperature { get; set; }
+        public string Temperature { get; set; }
         /// <summary>
         /// 湿度
         /// </summary>
-        public double? Humidity { get; set; }
+        public string Humidity { get; set; }
         /// <summary>
         /// 风向
         /// </summary>
@@ -28,7 +50,7 @@ namespace Flutter.Support.SqlSugar.Entities
         /// <summary>
         /// 空气质量指数
         /// </summary>
-        public double? Aqi { get; set; }
+        public string Aqi { get; set; }
         /// <summary>
         /// 	天气情况
         /// </summary>

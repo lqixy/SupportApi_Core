@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace Flutter.Support.Repository.Repositories
 {
-    public class NewsRepository : DbContext<News>,// AbstractDenormalizer, 
+    public class NewsRepository : SugarDbContext<News>,// AbstractDenormalizer, 
         INewsRepository
     {
         /// <summary>
@@ -56,10 +56,9 @@ namespace Flutter.Support.Repository.Repositories
         /// </summary>
         /// <param name="list"></param>
         /// <param name="type"></param>
-        public void InsertNews(List<News> list)
+        public bool InsertNews(List<News> list)
         {
-            CurrentDb.InsertRange(list);
-
+            return CurrentDb.InsertRange(list);
         }
 
         /// <summary>

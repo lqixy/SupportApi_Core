@@ -40,6 +40,16 @@ namespace Flutter.Support.Common.Strings
         }
 
         /// <summary>
+        /// 统一日期时间输出格式
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string DateFormat(this DateTime value, string format = "yyyyMMdd")
+        {
+            return value.ToString(format);
+        }
+
+        /// <summary>
         /// JsonString转换为实体对象
         /// </summary>
         /// <typeparam name="TObject"></typeparam>

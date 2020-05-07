@@ -7,13 +7,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Flutter.Support.HostedServer.Services
+namespace Flutter.Support.HostedServer.Services.News
 {
-    public class DeleteNewsAutoService : BackgroundService
+    public class NewsDeleteAutoService : BackgroundService
     {
         private readonly INewsApplicationService newsApplicationService;
 
-        public DeleteNewsAutoService(INewsApplicationService newsApplicationService)
+        public NewsDeleteAutoService(INewsApplicationService newsApplicationService)
         {
             this.newsApplicationService = newsApplicationService;
         }

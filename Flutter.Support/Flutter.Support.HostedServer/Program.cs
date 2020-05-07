@@ -1,8 +1,5 @@
-﻿using Flutter.Support.ApiRepository.Repositories;
-using Flutter.Support.Application.News.Services;
-using Flutter.Support.Domain.IApiRepositories.JuHe;
-using Flutter.Support.HostedServer.Cores;
-using Flutter.Support.HostedServer.Services;
+﻿using Flutter.Support.HostedServer.Cores;
+using Flutter.Support.HostedServer.Services.News;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,8 +25,8 @@ namespace Flutter.Support.HostedServer
                 .ConfigureServices((hostingContext, services) =>
                 {
                     services.RegisterTypes();
-                    services.AddHostedService<NewsAutoService>();
-                    services.AddHostedService<DeleteNewsAutoService>();
+                    services.AddHostedService<NewsInsertAutoService>();
+                    services.AddHostedService<NewsDeleteAutoService>();
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {
