@@ -11,9 +11,9 @@ namespace Flutter.Support.Domain.IApiRepositories.JuHe
     public interface IJuHeApiRepository
     {
         Task<TResult> GetAsync<TInput, TResult>(TInput input)
-            where TInput : IApiInputDto where TResult : IApiResultDto;
+            where TInput : IApiInputDto where TResult : class, IApiResultDto;
 
         Task<TResult> PostAsync<TInput, TResult>(TInput input)
-            where TInput : IApiInputDto where TResult : IApiResultDto;
+            where TInput : IApiInputDto where TResult : class, IApiResultDto;
     }
 }

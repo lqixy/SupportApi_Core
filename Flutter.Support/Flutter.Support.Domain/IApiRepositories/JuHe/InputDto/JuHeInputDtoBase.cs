@@ -1,4 +1,5 @@
 ﻿using Flutter.Support.Extension.Application.Services.Dtos;
+using Flutter.Support.Extension.Configurations;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Flutter.Support.Domain.IApiRepositories.JuHe.InputDto
     {
         public JuHeInputDtoBase()
         {
-            Key = "2ec31489d6eeb5194b173ef67250bc37";
+            Key = ConfigHelper.Get($"OutsideApiConfig:ApiKey:JuHe");
         }
 
         [JsonProperty(PropertyName = "key")]

@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Flutter.Support.Domain\Flutter.Support.Domain.csproj" />
-  </ItemGroup>
-
 </Project>

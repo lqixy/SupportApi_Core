@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Flutter.Support.HostedServer": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

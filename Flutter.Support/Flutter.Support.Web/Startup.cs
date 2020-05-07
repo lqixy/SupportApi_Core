@@ -1,24 +1,15 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using AutoMapper;
-using Flutter.Support.ApiRepository.Domain;
-using Flutter.Support.ApiRepository.Repositories;
-using Flutter.Support.Application.News.Services;
-using Flutter.Support.Domain.IApiRepositories.JuHe;
-using Flutter.Support.Extension.Configurations;
-using Flutter.Support.Web.Filters;
+using Flutter.Support.Dependency.Dependencies;
 using Flutter.Support.Web.Mappers;
+using Flutter.Support.Web.Middleware;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,12 +21,16 @@ namespace Flutter.Support.Web
     public class Startup
     {
         public static ILoggerRepository Repository { get; set; }
+        //private const string CONFIGROOT = "HangfireConfig";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            #region Log4net
             Repository = LogManager.CreateRepository("rollingAppender");
             XmlConfigurator.Configure(Repository,
                 new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log4net.config")));
+            #endregion
 
         }
 
@@ -45,8 +40,12 @@ namespace Flutter.Support.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            #region AutoMapper
             //automapper
             services.AddAutoMapper(typeof(FlutterSupportProfile));
+            #endregion
+
+            #region Swagger
             //swagger
             services.AddSwaggerGen(s =>
             {
@@ -62,28 +61,52 @@ namespace Flutter.Support.Web
                 var xmlPath = Path.Combine(basePath, "Flutter.Support.xml");
                 s.IncludeXmlComments(xmlPath);
             });
-            //Log
-            services.AddMvc(options =>
-            {
-                options.Filters.Add<HttpGlobalExceptionFilter>();//全局注册
-            });
-            //
+            #endregion
+
+            #region 流操作
+            //开启用,可更改API中的body流
             services.Configure<KestrelServerOptions>(x => x.AllowSynchronousIO = true)
                 .Configure<IISServerOptions>(x => x.AllowSynchronousIO = true);
+            #endregion
+
+            #region Hangfire 自动任务
+            //services.AddHangfire(Configuration);
+            //////注入hangfire
+            //services.AddHangfire(x =>
+            //{
+            //    //var configRoot = "HangfireConfig";
+            //    var storageType = Configuration[$"{CONFIGROOT}:StorageType"];
+            //    var connectionString = Configuration[$"HangfireConfig:ConnectionStrings:{storageType}"];
+            //    x.UseSqlServerStorage(connectionString);
+            //});
+            //services.AddHangfireServer();
+            #endregion
+
+            #region 读取配置 
             ////读取json配置
             //services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
+            #endregion
+
         }
 
+        #region Autofac
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="builder"></param>
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterType<ApiContext>().As<IApiContext>();
-            builder.RegisterType<ApiHttpClient>().As<IApiHttpClient>();
-            builder.RegisterType<JuHeApiRepository>().As<IJuHeApiRepository>();
-            builder.RegisterType<NewsApplicationService>().As<INewsApplicationService>();
-            //builder.RegisterType<NewsApplicationService>().As<INewsApplicationService>();
+            //builder.RegisterType<ApiContext>().As<IApiContext>();
+            //builder.RegisterType<ApiHttpClient>().As<IApiHttpClient>();
+            //builder.RegisterType<JuHeApiRepository>().As<IJuHeApiRepository>();
+            ////builder.RegisterType<NewsApplicationService>().As<INewsApplicationService>();
+            //builder.RegisterType<SqlServerDbProviderFactory>().As<IDbProviderFactory>();
+            //builder.RegisterType<DefaultConnectionStringResolver>().As<IConnectionStringResolver>();
+            builder.IocBuilder();
         }
 
+        #endregion
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -97,6 +120,10 @@ namespace Flutter.Support.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            //hangfire
+            //app.UseHangfire(Configuration);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -104,12 +131,20 @@ namespace Flutter.Support.Web
 
             app.UseAuthorization();
 
+            #region 注册中间键
+            //全局异常中间键
+            //app.UseUnifyException();
+            app.UseMiddleware(typeof(GlobalExceptionMiddleware));
+            #endregion
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            #region Swagger
             //swagger
             app.UseSwagger();
             app.UseSwaggerUI(su =>
@@ -117,11 +152,16 @@ namespace Flutter.Support.Web
                 //url中[V1]与ConfigureServices 中配置的SwaggerDoc("V1",..) 保持一致
                 su.SwaggerEndpoint("/swagger/V1/swagger.json", "Flutter.Support");
             });
+            #endregion
 
             //log4net
             loggerFactory.AddLog4Net();
 
-          
+            #region Hangfire
+            //AutoServiceCompute.Start();
+
+            #endregion
+
         }
     }
 }

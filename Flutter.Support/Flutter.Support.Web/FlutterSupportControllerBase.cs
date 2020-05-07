@@ -1,4 +1,5 @@
-﻿using Flutter.Support.Web.Filters;
+﻿using AutoMapper;
+using Flutter.Support.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,11 @@ namespace Flutter.Support.Web
     [ApiAuthorizationMD5Attribute]
     public class FlutterSupportControllerBase : ControllerBase
     {
-       
+        protected readonly IMapper mapper;
+
+        public FlutterSupportControllerBase(IMapper mapper)
+        {
+            this.mapper = mapper;
+        }
     }
 }

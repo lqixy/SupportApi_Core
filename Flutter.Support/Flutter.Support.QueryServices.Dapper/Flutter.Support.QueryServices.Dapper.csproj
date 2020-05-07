@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Flutter.Support.Dapper\Flutter.Support.Dapper.csproj" />
+    <ProjectReference Include="..\Flutter.Support.QueryServices\Flutter.Support.QueryServices.csproj" />
+    <ProjectReference Include="..\Flutter.Support.SqlSugar\Flutter.Support.SqlSugar.csproj" />
+  </ItemGroup>
+
+</Project>

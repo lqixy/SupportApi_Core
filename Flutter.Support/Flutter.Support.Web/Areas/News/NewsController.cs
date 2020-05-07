@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Flutter.Support.Application.News.Dtos;
 using Flutter.Support.Application.News.Services;
-using Flutter.Support.Web.Filters;
 using Flutter.Support.Web.Models.Output.News;
 using Flutter.Support.Web.Models.ViewModel;
 using log4net;
@@ -18,18 +16,18 @@ namespace Flutter.Support.Web.Areas.News
     public class NewsController : FlutterSupportControllerBase
     {
         private readonly INewsApplicationService newsApplicationService;
-        private readonly IMapper mapper;
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="newsApplicationService"></param>
         /// <param name="mapper"></param>
-        public NewsController(INewsApplicationService newsApplicationService
-            , IMapper mapper)
+        /// <param name="newsApplicationService"></param> 
+        public NewsController(IMapper mapper
+            , INewsApplicationService newsApplicationService) : base(mapper)
         {
             this.newsApplicationService = newsApplicationService;
-            this.mapper = mapper;
         }
+
         /// <summary>
         /// 新闻查询
         /// </summary>
@@ -37,11 +35,10 @@ namespace Flutter.Support.Web.Areas.News
         /// <returns></returns>
         [HttpPost]
         [Route("query")]
-        public async Task<NewsQueryOutput> NewsQuery(NewsQueryViewModel viewModel)
+        public NewsQueryOutput NewsQuery(NewsQueryViewModel viewModel)
         {
-            var dto = await newsApplicationService.NewsQuery(viewModel.type);
-            var result = mapper.Map<NewsQueryOutput>(dto);
-            return result;
+            var result = newsApplicationService.Query(viewModel.PageSize, viewModel.PageIndex, (int)viewModel.Type);
+            return mapper.Map<NewsQueryOutput>(result);
         }
 
     }
