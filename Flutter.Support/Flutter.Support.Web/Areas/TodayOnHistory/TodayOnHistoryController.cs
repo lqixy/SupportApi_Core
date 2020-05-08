@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
 using Flutter.Support.Application.TodayOnHistory;
 using Flutter.Support.Domain.Dtos;
+using Flutter.Support.Extension.Exceptions;
+using Flutter.Support.Web.ModelBinders;
 using Flutter.Support.Web.Models.Output.TodayOnHistory;
+using Flutter.Support.Web.Models.ViewModel.TodayOnHistorys;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,23 +29,24 @@ namespace Flutter.Support.Web.Areas.TodayOnHistory
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="day"></param>
+        /// <param name="viewModel"></param> 
         /// <returns></returns>
         [Route("query")]
-        public async Task<List<TodayOnHistoryQueryOutput>> Query(string day)
+        public async Task<List<TodayOnHistoryQueryOutput>> Query(TodayOnHistoryQueryViewModel viewModel)
         {
-            List<TodayOnHistoryQueryDto> result = await todayOnHistoryApplicationService.Query(day);
+            if (!ModelState.IsValid) throw new UserFriendlyException("");
+            List<TodayOnHistoryQueryDto> result = await todayOnHistoryApplicationService.Query(viewModel.Day);
             return mapper.Map<List<TodayOnHistoryQueryOutput>>(result);
         }
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="viewModel"></param> 
         /// <returns></returns>
         [Route("detail")]
-        public async Task<TodayOnHistoryDetailOutput> Detail(int id)
+        public async Task<TodayOnHistoryDetailOutput> Detail(TodayOnHistoryDetailViewModel viewModel)
         {
-            TodayOnHistoryDetailDto result = await todayOnHistoryApplicationService.Detail(id);
+            TodayOnHistoryDetailDto result = await todayOnHistoryApplicationService.Detail(viewModel.Id);
             return mapper.Map<TodayOnHistoryDetailOutput>(result);
         }
     }

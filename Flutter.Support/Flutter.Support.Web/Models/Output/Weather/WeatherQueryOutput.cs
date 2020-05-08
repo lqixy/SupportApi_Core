@@ -82,6 +82,11 @@ namespace Flutter.Support.Web.Models.Output.Weather
         /// 
         /// </summary>
         public string Direct { get; set; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public string Wid { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

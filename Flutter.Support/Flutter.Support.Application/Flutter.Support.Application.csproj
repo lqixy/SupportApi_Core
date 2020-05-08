@@ -16,4 +16,10 @@
     <ProjectReference Include="..\Flutter.Support.Extension\Flutter.Support.Extension.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="News\Mappers\" />
+    <Folder Include="TodayOnHistory\Mappers\" />
+    <Folder Include="Weather\Mappers\" />
+  </ItemGroup>
+
 </Project>

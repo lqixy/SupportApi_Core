@@ -9,7 +9,7 @@ namespace Flutter.Support.Domain.Enums
         /// <summary>
         /// 聚合新闻
         /// </summary>
-        News,
+        NewsOrToday,
 
         Weather
     }

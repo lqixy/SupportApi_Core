@@ -37,9 +37,15 @@ namespace Flutter.Support.Application.Weather
         public async Task<WeatherQueryDto> Query(string city)
         {
             var weather = weatherRepository.Query(city);
-            if (weather == null || (DateTime.Now - weather.AddDate).TotalHours >= 6)
+            if (weather == null)
             {
                 await InsertWeather(city);
+
+                weather = weatherRepository.Query(city);
+            }
+            else if ((DateTime.Now - weather.AddDate).TotalHours >= 6)
+            {
+                await Update(city);
 
                 weather = weatherRepository.Query(city);
             }
@@ -48,7 +54,7 @@ namespace Flutter.Support.Application.Weather
             {
                 City = weather.City,
                 RealTime = mapper.Map<RealTimeWeatherQueryDto>(weather),
-                Future = JsonConvert.DeserializeObject<List<FutureWeatherQueryDto>>(weather.Future)
+                Future = weather.Future // JsonConvert.DeserializeObject<List<FutureWeatherQueryDto>>(weather.Future)
             };
             //return mapper.Map<WeatherQueryDto>(weather);
         }
@@ -60,35 +66,43 @@ namespace Flutter.Support.Application.Weather
 
             if (apiResult.Success)
             {
-                var exists = weatherRepository.Query(city);
-                if (exists == null)
-                {
-                    var realtime = apiResult.Result.Realtime;
-                    weatherRepository.Insert(new SqlSugar.Entities.Weather(city,
-                                                                           realtime.Temperature,
-                                                                           realtime.Humidity,
-                                                                           realtime.Direct,
-                                                                           realtime.Power,
-                                                                           realtime.Aqi,
-                                                                           realtime.Info,
-                                                                           JsonConvert.SerializeObject(apiResult.Result.Future)));
-                }
-                else
-                {
-                    var realtime = apiResult.Result.Realtime;
 
-                    exists.AddDate = DateTime.Now;
-                    exists.Temperature = realtime.Temperature;
-                    exists.Humidity = realtime.Humidity;
-                    exists.Direct = realtime.Direct;
-                    exists.Power = realtime.Power;
-                    exists.Aqi = realtime.Aqi;
-                    exists.Info = realtime.Info;
-                    exists.Future = JsonConvert.SerializeObject(apiResult.Result.Future);
+                var realtime = apiResult.Result.Realtime;
+                weatherRepository.Insert(new SqlSugar.Entities.Weather(city,
+                                                                       realtime.Temperature,
+                                                                       realtime.Humidity,
+                                                                       realtime.Direct,
+                                                                       realtime.Power,
+                                                                       realtime.Aqi,
+                                                                       realtime.Info,
+                                                                       JsonConvert.SerializeObject(apiResult.Result.Future)));
 
-                    weatherRepository.Update(exists);
-                }
             }
         }
+
+        public async Task Update(string city)
+        {
+            var input = new JuHeWeatherInputDto { City = city };
+            var apiResult = await juHeApiRepository.GetAsync<JuHeWeatherInputDto, JuHeWeatherApiResultOutputDto>(input);
+
+            if (apiResult.Success)
+            {
+                var exists = weatherRepository.Query(city);
+                var realtime = apiResult.Result.Realtime;
+
+                exists.AddDate = DateTime.Now;
+                exists.Temperature = realtime.Temperature;
+                exists.Humidity = realtime.Humidity;
+                exists.Direct = realtime.Direct;
+                exists.Power = realtime.Power;
+                exists.Aqi = realtime.Aqi;
+                exists.Info = realtime.Info;
+                exists.Future = JsonConvert.SerializeObject(apiResult.Result.Future);
+
+                weatherRepository.Update(exists);
+            }
+        }
+
+
     }
 }

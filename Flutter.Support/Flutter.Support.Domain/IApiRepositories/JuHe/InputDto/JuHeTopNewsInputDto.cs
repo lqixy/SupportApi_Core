@@ -9,7 +9,7 @@ using System.Text;
 namespace Flutter.Support.Domain.IApiRepositories.JuHe.InputDto
 {
 
-    [ApiUrlAttribute("toutiao", "index", Url = Enums.ApiUrlAddress.News)]
+    [ApiUrlAttribute("toutiao", "index", Url = Enums.ApiUrlAddress.NewsOrToday)]
     public class JuHeTopNewsInputDto : ApiJsonSerializeDto
     {
         public JuHeTopNewsInputDto()

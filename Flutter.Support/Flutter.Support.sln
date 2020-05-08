@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Dependency"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.HostedServer", "Flutter.Support.HostedServer\Flutter.Support.HostedServer.csproj", "{B1069FCA-9969-4DBC-BB19-4DF62AE0AD13}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Dapper", "Flutter.Support.Dapper\Flutter.Support.Dapper.csproj", "{E64A2090-8885-43C0-B548-9240A7E059D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{B1069FCA-9969-4DBC-BB19-4DF62AE0AD13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1069FCA-9969-4DBC-BB19-4DF62AE0AD13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1069FCA-9969-4DBC-BB19-4DF62AE0AD13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E64A2090-8885-43C0-B548-9240A7E059D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E64A2090-8885-43C0-B548-9240A7E059D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E64A2090-8885-43C0-B548-9240A7E059D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E64A2090-8885-43C0-B548-9240A7E059D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +113,7 @@ Global
 		{7D47266F-6F3E-4048-907E-048C07B6BA30} = {AFB71B24-D469-46A6-96AA-840EF8C79744}
 		{81311FCB-BDD1-436B-A2B9-90B05449F9FC} = {3BC29A07-2071-493D-8CB3-16549B4DD89D}
 		{B1069FCA-9969-4DBC-BB19-4DF62AE0AD13} = {DD636CFF-6902-4812-939B-706D5A3ECD67}
+		{E64A2090-8885-43C0-B548-9240A7E059D6} = {AFB71B24-D469-46A6-96AA-840EF8C79744}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D65EE2A7-2C1F-4A86-A6E2-426683811A71}

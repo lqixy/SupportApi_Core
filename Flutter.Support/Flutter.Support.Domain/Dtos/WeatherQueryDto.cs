@@ -10,8 +10,8 @@ namespace Flutter.Support.Domain.Dtos
 
         public RealTimeWeatherQueryDto RealTime { get; set; }
 
-        public List<FutureWeatherQueryDto> Future { get; set; }
-        //public string Future { get; set; }
+        //public List<FutureWeatherQueryDto> Future { get; set; }
+        public string Future { get; set; }
     }
 
     public class RealTimeWeatherQueryDto
@@ -46,23 +46,25 @@ namespace Flutter.Support.Domain.Dtos
         public string Aqi { get; set; }
     }
 
-    public class FutureWeatherQueryDto
-    {
-        public DateTime Date { get; set; }
+    //public class FutureWeatherQueryDto
+    //{
+    //    public string Date { get; set; }
 
-        public string Temperature { get; set; }
+    //    public string Temperature { get; set; }
 
-        public string Weather { get; set; }
+    //    public string Weather { get; set; }
 
-        public string Direct { get; set; }
+    //    public string Direct { get; set; }
 
-        public WidFutureWeatherQueryDto Wid { get; set; }
-    }
+    //    public WidFutureWeatherQueryDto Wid { get; set; }
 
-    public class WidFutureWeatherQueryDto
-    {
-        public string Day { get; set; }
+    //    //public string Wid { get; set; }
+    //}
 
-        public string Night { get; set; }
-    }
+    //public class WidFutureWeatherQueryDto
+    //{
+    //    public string Day { get; set; }
+
+    //    public string Night { get; set; }
+    //}
 }
