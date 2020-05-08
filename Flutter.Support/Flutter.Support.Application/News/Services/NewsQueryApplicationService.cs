@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Flutter.Support.Domain.Dtos;
 using Flutter.Support.Domain.IRepositories;
+using Flutter.Support.Redis.Cache;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +12,23 @@ namespace Flutter.Support.Application.News.Services
 {
     public class NewsQueryApplicationService : INewsQueryApplicationService
     {
+        private const string RedisTitle = "News:";
+
         private readonly IMapper mapper;
         private readonly INewsRepository newsRepository;
         private readonly INewsApplicationService newsApplicationService;
+        private readonly IRedisCache redisCache;
 
         public NewsQueryApplicationService(
             IMapper mapper
             , INewsRepository newsRepository
-            , INewsApplicationService newsApplicationService)
+            , INewsApplicationService newsApplicationService
+            , IRedisCache redisCache)
         {
             this.mapper = mapper;
             this.newsRepository = newsRepository;
             this.newsApplicationService = newsApplicationService;
+            this.redisCache = redisCache;
         }
 
         /// <summary>
@@ -34,6 +40,9 @@ namespace Flutter.Support.Application.News.Services
         /// <returns></returns>
         public async Task<NewsQueryDto> Query(int pageSize = 12, int pageIndex = 1, int type = 0)
         {
+            var dto = redisCache.GetValue<NewsQueryDto>($"{RedisTitle}{type}_{pageIndex}_{pageSize}");
+            if (dto != null) return dto;
+
             var now = DateTime.Now;
 
             var first = newsRepository.FirstOrDefault(x => x.Type == (int)type, x => x.Date);
@@ -42,7 +51,10 @@ namespace Flutter.Support.Application.News.Services
                 await newsApplicationService.InsertNews(type);
             }
 
-            return GetNews(pageSize, pageIndex, type);
+            var result = GetNews(pageSize, pageIndex, type);
+
+            redisCache.SetValue($"{RedisTitle}{type}_{pageIndex}_{pageSize}", result, TimeSpan.FromMinutes(5));
+            return result;
         }
 
         /// <summary>

@@ -4,6 +4,7 @@ using Flutter.Support.Domain.IApiRepositories.JuHe;
 using Flutter.Support.Domain.IApiRepositories.JuHe.InputDto;
 using Flutter.Support.Domain.IApiRepositories.JuHe.OutputDto;
 using Flutter.Support.Domain.IRepositories;
+using Flutter.Support.Redis.Cache;
 using Flutter.Support.SqlSugar;
 using Newtonsoft.Json;
 using System;
@@ -16,18 +17,24 @@ namespace Flutter.Support.Application.Weather
     public class WeatherQueryApplicationService :
         IWeatherQueryApplicationService
     {
+        private const string RedisTitle = "Weather:";
+
         private readonly IMapper mapper;
         private readonly IWeatherRepository weatherRepository;
         private readonly IJuHeApiRepository juHeApiRepository;
+        private readonly IRedisCache redisCache;
 
         public WeatherQueryApplicationService(
             IMapper mapper
             , IWeatherRepository weatherRepository
-            , IJuHeApiRepository juHeApiRepository)
+            , IJuHeApiRepository juHeApiRepository
+            , IRedisCache redisCache
+            )
         {
             this.mapper = mapper;
             this.weatherRepository = weatherRepository;
             this.juHeApiRepository = juHeApiRepository;
+            this.redisCache = redisCache;
         }
         /// <summary>
         /// 
@@ -36,6 +43,9 @@ namespace Flutter.Support.Application.Weather
         /// <returns></returns>
         public async Task<WeatherQueryDto> Query(string city)
         {
+            var dto = redisCache.GetValue<WeatherQueryDto>($"{RedisTitle}{city}");
+            if (dto != null) return dto;
+
             var weather = weatherRepository.Query(city);
             if (weather == null)
             {
@@ -50,12 +60,16 @@ namespace Flutter.Support.Application.Weather
                 weather = weatherRepository.Query(city);
             }
 
-            return new WeatherQueryDto
+            var result = new WeatherQueryDto
             {
                 City = weather.City,
                 RealTime = mapper.Map<RealTimeWeatherQueryDto>(weather),
                 Future = weather.Future // JsonConvert.DeserializeObject<List<FutureWeatherQueryDto>>(weather.Future)
             };
+
+            redisCache.SetValue($"{RedisTitle}{city}", result, TimeSpan.FromHours(6));
+
+            return result;
             //return mapper.Map<WeatherQueryDto>(weather);
         }
 

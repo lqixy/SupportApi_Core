@@ -4,6 +4,7 @@ using Flutter.Support.ApiRepository.Domain;
 using Flutter.Support.ApiRepository.Repositories;
 using Flutter.Support.Dapper;
 using Flutter.Support.Domain.IApiRepositories.JuHe;
+using Flutter.Support.Redis.Cache;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,8 @@ namespace Flutter.Support.Dependency.Dependencies
             builder.RegisterType<SqlServerDbProviderFactory>().As<IDbProviderFactory>();
             builder.RegisterType<DefaultConnectionStringResolver>().As<IConnectionStringResolver>();
             //builder.RegisterType<InsertNewsToDbService>().As<IAutoService>();
+            builder.RegisterType<RedisCacheDatabaseProvider>().As<IRedisCacheDatabaseProvider>();
+            builder.RegisterType<RedisCache>().As<IRedisCache>();
 
             var assemblies = ReflectionHelper.GetAllAssemblies();
             //注册仓储 && Service

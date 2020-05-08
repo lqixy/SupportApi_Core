@@ -34,7 +34,6 @@ namespace Flutter.Support.Web.Areas.TodayOnHistory
         [Route("query")]
         public async Task<List<TodayOnHistoryQueryOutput>> Query(TodayOnHistoryQueryViewModel viewModel)
         {
-            if (!ModelState.IsValid) throw new UserFriendlyException("");
             List<TodayOnHistoryQueryDto> result = await todayOnHistoryApplicationService.Query(viewModel.Day);
             return mapper.Map<List<TodayOnHistoryQueryOutput>>(result);
         }
