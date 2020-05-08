@@ -1,7 +1,6 @@
 ﻿using Flutter.Support.ApiRepository.Domain;
 using Flutter.Support.ApiRepository.Repositories;
 using Flutter.Support.Application.News.Services;
-using Flutter.Support.Dapper;
 using Flutter.Support.Domain.IApiRepositories.JuHe;
 using Flutter.Support.Domain.IRepositories;
 using Flutter.Support.Repository.Repositories;
@@ -21,8 +20,8 @@ namespace Flutter.Support.HostedServer.Cores
             services.AddSingleton<IJuHeApiRepository, JuHeApiRepository>();
             services.AddSingleton<IApiHttpClient, ApiHttpClient>();
             services.AddSingleton<IApiContext, ApiContext>();
-            services.AddSingleton<IDbProviderFactory, SqlServerDbProviderFactory>();
-            services.AddSingleton<IConnectionStringResolver, DefaultConnectionStringResolver>();
+            //services.AddSingleton<IDbProviderFactory, SqlServerDbProviderFactory>();
+            //services.AddSingleton<IConnectionStringResolver, DefaultConnectionStringResolver>();
             services.AddSingleton<INewsRepository, NewsRepository>();
         }
     }

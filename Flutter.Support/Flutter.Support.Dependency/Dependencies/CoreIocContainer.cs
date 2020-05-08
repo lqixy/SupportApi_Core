@@ -2,13 +2,10 @@
 using Autofac.Extensions.DependencyInjection;
 using Flutter.Support.ApiRepository.Domain;
 using Flutter.Support.ApiRepository.Repositories;
-using Flutter.Support.Dapper;
 using Flutter.Support.Domain.IApiRepositories.JuHe;
 using Flutter.Support.Redis.Cache;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Flutter.Support.Dependency.Dependencies
 {
@@ -51,10 +48,8 @@ namespace Flutter.Support.Dependency.Dependencies
             builder.RegisterType<ApiContext>().As<IApiContext>();
             builder.RegisterType<ApiHttpClient>().As<IApiHttpClient>();
             builder.RegisterType<JuHeApiRepository>().As<IJuHeApiRepository>();
-            //builder.RegisterType<NewsApplicationService>().As<INewsApplicationService>();
-            builder.RegisterType<SqlServerDbProviderFactory>().As<IDbProviderFactory>();
-            builder.RegisterType<DefaultConnectionStringResolver>().As<IConnectionStringResolver>();
-            //builder.RegisterType<InsertNewsToDbService>().As<IAutoService>();
+            //builder.RegisterType<SqlServerDbProviderFactory>().As<IDbProviderFactory>();
+            //builder.RegisterType<DefaultConnectionStringResolver>().As<IConnectionStringResolver>();
             builder.RegisterType<RedisCacheDatabaseProvider>().As<IRedisCacheDatabaseProvider>();
             builder.RegisterType<RedisCache>().As<IRedisCache>();
 
