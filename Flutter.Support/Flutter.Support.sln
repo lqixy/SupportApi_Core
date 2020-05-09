@@ -43,7 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.HostedServe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Dapper", "Flutter.Support.Dapper\Flutter.Support.Dapper.csproj", "{E64A2090-8885-43C0-B548-9240A7E059D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flutter.Support.Redis", "Flutter.Support.Redis\Flutter.Support.Redis.csproj", "{32801B87-AD24-4963-898C-E02A9684A8F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flutter.Support.Redis", "Flutter.Support.Redis\Flutter.Support.Redis.csproj", "{32801B87-AD24-4963-898C-E02A9684A8F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flutter.Support.Test", "Flutter.Support.Test\Flutter.Support.Test.csproj", "{149F2821-37A0-4ED0-A727-E5DA89D0F1C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +105,10 @@ Global
 		{32801B87-AD24-4963-898C-E02A9684A8F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32801B87-AD24-4963-898C-E02A9684A8F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32801B87-AD24-4963-898C-E02A9684A8F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{149F2821-37A0-4ED0-A727-E5DA89D0F1C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{149F2821-37A0-4ED0-A727-E5DA89D0F1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{149F2821-37A0-4ED0-A727-E5DA89D0F1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{149F2821-37A0-4ED0-A727-E5DA89D0F1C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -121,6 +127,7 @@ Global
 		{B1069FCA-9969-4DBC-BB19-4DF62AE0AD13} = {DD636CFF-6902-4812-939B-706D5A3ECD67}
 		{E64A2090-8885-43C0-B548-9240A7E059D6} = {AFB71B24-D469-46A6-96AA-840EF8C79744}
 		{32801B87-AD24-4963-898C-E02A9684A8F0} = {3B938C1E-DFD7-4FFE-BD95-DD67CED040E8}
+		{149F2821-37A0-4ED0-A727-E5DA89D0F1C3} = {6DFE702F-3EC0-45B6-B347-5579675FE1D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D65EE2A7-2C1F-4A86-A6E2-426683811A71}

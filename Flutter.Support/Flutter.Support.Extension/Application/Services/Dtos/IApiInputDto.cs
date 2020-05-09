@@ -7,5 +7,7 @@ namespace Flutter.Support.Extension.Application.Services.Dtos
     public interface IApiInputDto
     {
         string Serialize();
+
+        string CounterSign();
     }
 }

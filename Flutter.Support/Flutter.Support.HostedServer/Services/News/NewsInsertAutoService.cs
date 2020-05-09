@@ -23,7 +23,7 @@ namespace Flutter.Support.HostedServer.Services.News
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                var timer = ConfigHelper.GetInt("Timer");
+                var timer = 60;// ConfigHelper.GetInt("Timer");
                 LogHelper.Info($"获取新闻服务开始");
                 await newsApplicationService.InsertNews();
                 await Task.Delay(TimeSpan.FromMinutes(timer), stoppingToken);

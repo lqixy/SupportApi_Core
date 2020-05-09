@@ -35,4 +35,8 @@
     <ProjectReference Include="..\Flutter.Support.Repository\Flutter.Support.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Weather\" />
+  </ItemGroup>
+
 </Project>
