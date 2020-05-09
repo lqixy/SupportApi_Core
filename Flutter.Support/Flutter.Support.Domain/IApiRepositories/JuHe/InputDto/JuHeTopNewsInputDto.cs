@@ -1,4 +1,6 @@
 ﻿using Flutter.Support.Domain.Attributes;
+using Flutter.Support.Extension.Application.Services.Dtos;
+using Flutter.Support.Extension.Configurations;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,9 +9,16 @@ using System.Text;
 namespace Flutter.Support.Domain.IApiRepositories.JuHe.InputDto
 {
 
-    [ApiUrlAttribute("toutiao", "index")]
-    public class JuHeTopNewsInputDto : JuHeInputDtoBase
+    [ApiUrlAttribute("toutiao", "index", Url = Enums.ApiUrlAddress.NewsOrToday)]
+    public class JuHeTopNewsInputDto : ApiJsonSerializeDto
     {
+        public JuHeTopNewsInputDto()
+        {
+            Key = ConfigHelper.Get($"OutsideApiConfig:ApiKey:News");
+        }
+
+        [JsonProperty(PropertyName = "key")]
+        public string Key { get; set; }
         /// <summary>
         /// 类型,,top(头条，默认),
         /// shehui(社会),guonei(国内),guoji(国际),

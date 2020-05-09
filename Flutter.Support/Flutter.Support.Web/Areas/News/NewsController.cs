@@ -15,7 +15,7 @@ namespace Flutter.Support.Web.Areas.News
     [Route("api/news")]
     public class NewsController : FlutterSupportControllerBase
     {
-        private readonly INewsApplicationService newsApplicationService;
+        private readonly INewsQueryApplicationService newsApplicationService;
 
         /// <summary>
         /// 
@@ -23,7 +23,7 @@ namespace Flutter.Support.Web.Areas.News
         /// <param name="mapper"></param>
         /// <param name="newsApplicationService"></param> 
         public NewsController(IMapper mapper
-            , INewsApplicationService newsApplicationService) : base(mapper)
+            , INewsQueryApplicationService newsApplicationService) : base(mapper)
         {
             this.newsApplicationService = newsApplicationService;
         }
@@ -35,9 +35,9 @@ namespace Flutter.Support.Web.Areas.News
         /// <returns></returns>
         [HttpPost]
         [Route("query")]
-        public NewsQueryOutput NewsQuery(NewsQueryViewModel viewModel)
+        public async Task<NewsQueryOutput> NewsQuery(NewsQueryViewModel viewModel)
         {
-            var result = newsApplicationService.Query(viewModel.PageSize, viewModel.PageIndex, (int)viewModel.Type);
+            var result = await newsApplicationService.Query(viewModel.PageSize, viewModel.PageIndex, (int)viewModel.Type);
             return mapper.Map<NewsQueryOutput>(result);
         }
 

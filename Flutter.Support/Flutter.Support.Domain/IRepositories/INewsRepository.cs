@@ -18,7 +18,7 @@ namespace Flutter.Support.Domain.IRepositories
         News FirstOrDefault(Expression<Func<News, bool>> whereExpression,
                             Expression<Func<News, object>> orderByExpression, OrderByType orderByType = OrderByType.Desc);
 
-        void InsertNews(List<News> list);
+        bool InsertNews(List<News> list);
 
         void DeleteNews(Expression<Func<News,bool>> whereExpression);
         /// <summary>

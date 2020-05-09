@@ -8,11 +8,11 @@ using System.Text;
 
 namespace Flutter.Support.SqlSugar
 {
-    public class DbContext<T> where T : class, new()
+    public class SugarDbContext<T> where T : class, new()
     {
         public SqlSugarClient Db;
 
-        public DbContext()
+        public SugarDbContext()
         {
             var dbTypeStr = ConfigHelper.Get("SqlConfig:DbType");
             Enum.TryParse(dbTypeStr, out DbType dbType);

@@ -1,24 +1,14 @@
-﻿using Flutter.Support.Common;
-using Flutter.Support.Dapper;
-using Flutter.Support.Dapper.Extensions;
-using Flutter.Support.Domain.Dtos;
-using Flutter.Support.Domain.IApiRepositories.JuHe.OutputDto;
-using Flutter.Support.Domain.IRepositories;
+﻿using Flutter.Support.Domain.IRepositories;
 using Flutter.Support.SqlSugar;
 using Flutter.Support.SqlSugar.Entities;
-using Flutter.Support.SqlSugar.Enums;
-using Newtonsoft.Json;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Flutter.Support.Repository.Repositories
 {
-    public class NewsRepository : DbContext<News>,// AbstractDenormalizer, 
+    public class NewsRepository : SugarDbContext<News>,// AbstractDenormalizer, 
         INewsRepository
     {
         /// <summary>
@@ -56,10 +46,9 @@ namespace Flutter.Support.Repository.Repositories
         /// </summary>
         /// <param name="list"></param>
         /// <param name="type"></param>
-        public void InsertNews(List<News> list)
+        public bool InsertNews(List<News> list)
         {
-            CurrentDb.InsertRange(list);
-
+            return CurrentDb.InsertRange(list);
         }
 
         /// <summary>

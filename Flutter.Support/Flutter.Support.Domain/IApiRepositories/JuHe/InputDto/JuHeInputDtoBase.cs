@@ -9,12 +9,12 @@ namespace Flutter.Support.Domain.IApiRepositories.JuHe.InputDto
 {
     public class JuHeInputDtoBase : ApiJsonSerializeDto
     {
-        public JuHeInputDtoBase()
-        {
-            Key = ConfigHelper.Get($"OutsideApiConfig:ApiKey:JuHe");
-        }
+        //public JuHeInputDtoBase()
+        //{
+        //    Key = ConfigHelper.Get($"OutsideApiConfig:ApiKey:JuHe");
+        //}
 
-        [JsonProperty(PropertyName = "key")]
-        public string Key { get; set; }
+        //[JsonProperty(PropertyName = "key")]
+        //public string Key { get; set; }
     }
 }

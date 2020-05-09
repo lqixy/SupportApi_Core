@@ -20,15 +20,22 @@ namespace Flutter.Support.Application.News.Services
         /// </summary>
         /// <returns></returns>
         void DeleteNews(Expression<Func<SqlSugar.Entities.News, bool>> whereExpression);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="pageSize"></param>
+        ///// <param name="pageIndex"></param>
+        ///// <param name="type"></param>
+        //NewsQueryDto GetNews(int pageSize = 12, int pageIndex = 1, int type = 0);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pageSize"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        Task<NewsQueryDto> Query(int pageSize, int pageIndex, int type = 0);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="pageSize"></param>
+        ///// <param name="pageIndex"></param>
+        ///// <param name="type"></param>
+        ///// <returns></returns>
+        //Task<NewsQueryDto> Query(int pageSize, int pageIndex, int type = 0);
 
     }
 }

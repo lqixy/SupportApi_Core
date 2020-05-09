@@ -7,8 +7,10 @@ namespace Flutter.Support.Domain.Enums
     public enum ApiUrlAddress
     {
         /// <summary>
-        /// 聚合
+        /// 聚合新闻
         /// </summary>
-        JuHe
+        NewsOrToday,
+
+        Weather
     }
 }

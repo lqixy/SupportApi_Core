@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Flutter.Support.ApiRepository\Flutter.Support.ApiRepository.csproj" />
-    <ProjectReference Include="..\Flutter.Support.Dapper\Flutter.Support.Dapper.csproj" />
+    <ProjectReference Include="..\Flutter.Support.Redis\Flutter.Support.Redis.csproj" />
   </ItemGroup>
 
 </Project>
