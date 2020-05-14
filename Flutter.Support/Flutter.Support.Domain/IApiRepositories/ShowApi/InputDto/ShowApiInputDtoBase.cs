@@ -14,7 +14,7 @@ namespace Flutter.Support.Domain.IApiRepositories.ShowApi.InputDto
         public ShowApiInputDtoBase()
         {
             showapi_appid = ConfigHelper.Get("ShowApi:appId");
-            showapi_timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmss");
+            //showapi_timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmss");
         }
 
         [JsonProperty(PropertyName = "showapi_appid")]
