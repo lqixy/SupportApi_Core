@@ -39,22 +39,24 @@ namespace Flutter.Support.Application.News.Services
         /// <param name="pageIndex"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public async Task<NewsQueryDto> Query(int pageSize = 12, int pageIndex = 1, int type = 0, string channelId = ShowApiNewsChannel.Domestic)
+        public async Task<NewsQueryDto> Query(string channelId = ShowApiNewsChannel.Domestic, int pageIndex = 1, int pageSize = 20)
         {
-            var dto = redisCache.GetValue<NewsQueryDto>($"{RedisTitle}{type}_{channelId}_{pageIndex}_{pageSize}");
+            var redisKey = $"{RedisTitle}{channelId}_{pageIndex}_{pageSize}";
+
+            var dto = redisCache.GetValue<NewsQueryDto>(redisKey);
             if (dto != null) return dto;
 
             var now = DateTime.Now;
 
-            var first = newsRepository.FirstOrDefault(x => x.Type == (int)type, x => x.Date);
+            var first = newsRepository.FirstOrDefault(x => x.ChannelId == channelId, x => x.Date);
             if (first != null && (now - first.Date).TotalMinutes >= 30)
             {
-                await newsApplicationService.InsertNews(type);
+                await newsApplicationService.InsertNews(channelId);
             }
 
-            var result = GetNews(pageSize, pageIndex, type);
+            var result = GetNews(channelId, pageSize, pageIndex);
 
-            redisCache.SetValue($"{RedisTitle}{type}_{pageIndex}_{pageSize}", result, TimeSpan.FromMinutes(5));
+            redisCache.SetValue(redisKey, result, TimeSpan.FromMinutes(5));
             return result;
         }
 
@@ -65,11 +67,11 @@ namespace Flutter.Support.Application.News.Services
         /// <param name="pageIndex"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public NewsQueryDto GetNews(int pageSize = 12, int pageIndex = 1, int type = 0)
+        public NewsQueryDto GetNews(string channelId = ShowApiNewsChannel.Domestic, int pageIndex = 1, int pageSize = 20)
         {
 
             var totalCount = 0;
-            var list = newsRepository.Query(ref totalCount, type, pageSize, pageIndex);
+            var list = newsRepository.Query(channelId, ref totalCount, pageSize, pageIndex);
 
             var result = new NewsQueryDto
             {

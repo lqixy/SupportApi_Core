@@ -20,7 +20,7 @@ namespace Flutter.Support.Domain.IRepositories
 
         bool InsertNews(List<News> list);
 
-        void DeleteNews(Expression<Func<News,bool>> whereExpression);
+        void DeleteNews(Expression<Func<News, bool>> whereExpression);
         /// <summary>
         /// 
         /// </summary>
@@ -29,6 +29,6 @@ namespace Flutter.Support.Domain.IRepositories
         /// <param name="pageSize"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        List<News> Query(ref int totalCount, int type = 0, int pageSize = 12, int pageIndex = 1);
+        List<News> Query(string channelId, ref int totalCount, int pageSize = 12, int pageIndex = 1);
     }
 }

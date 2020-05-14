@@ -15,7 +15,7 @@ namespace Flutter.Support.Application.News.Services
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        Task InsertNews(int type = 0, string channelId = ShowApiNewsChannel.Domestic);
+        Task InsertNews(string channelId = ShowApiNewsChannel.Domestic);
         /// <summary>
         /// 
         /// </summary>

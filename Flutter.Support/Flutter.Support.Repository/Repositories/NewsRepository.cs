@@ -55,10 +55,10 @@ namespace Flutter.Support.Repository.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<News> Query(ref int totalCount, int type = 0, int pageSize = 12, int pageIndex = 1)
+        public List<News> Query(string channelId, ref int totalCount, int pageSize = 12, int pageIndex = 1)
         {
             var pageModel = new PageModel { PageIndex = pageIndex, PageSize = pageSize };
-            var list = CurrentDb.GetPageList(x => x.Type == (int)type, pageModel, x => x.Date, OrderByType.Desc);
+            var list = CurrentDb.GetPageList(x => x.ChannelId == channelId, pageModel, x => x.Date, OrderByType.Desc);
             totalCount = pageModel.PageCount;
 
             return list;

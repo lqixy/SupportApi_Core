@@ -39,7 +39,7 @@ namespace Flutter.Support.Test
             //var result = await showApiRepository.GetAsync<ShowApiNewsInputDto, ShowApiOutputDtoBase<ShowApiNewsOutputDto>>(input, false);
 
             //await newsApplicationService.InsertNews();
-            var result =   newsQueryApplicationService.GetNews();
+            var result = newsQueryApplicationService.GetNews(ShowApiNewsChannel.DomesticNew);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Flutter.Support.Web.Areas.News
         [Route("query")]
         public async Task<NewsQueryOutput> NewsQuery(NewsQueryViewModel viewModel)
         {
-            var result = await newsApplicationService.Query(viewModel.PageSize, viewModel.PageIndex, (int)viewModel.Type, viewModel.ChannelId);
+            var result = await newsApplicationService.Query(viewModel.ChannelId,viewModel.PageIndex,viewModel.PageSize);
             return mapper.Map<NewsQueryOutput>(result);
         }
         /// <summary>

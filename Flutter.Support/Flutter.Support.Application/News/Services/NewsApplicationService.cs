@@ -49,7 +49,7 @@ namespace Flutter.Support.Application.News.Services
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public async Task InsertNews(int type = 0, string channelId = ShowApiNewsChannel.Domestic)
+        public async Task InsertNews(string channelId = ShowApiNewsChannel.Domestic)
         {
             #region JuHe
             //for (int i = 0; i <= (int)NewsTypeEnum.caijing; i++)

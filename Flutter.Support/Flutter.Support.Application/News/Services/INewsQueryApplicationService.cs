@@ -15,7 +15,7 @@ namespace Flutter.Support.Application.News.Services
         /// <param name="pageSize"></param>
         /// <param name="pageIndex"></param>
         /// <param name="type"></param>
-        NewsQueryDto GetNews(int pageSize = 12, int pageIndex = 1, int type = 0);
+        NewsQueryDto GetNews(string channelId = ShowApiNewsChannel.Domestic, int pageIndex = 1, int pageSize = 20);
 
         /// <summary>
         /// 
@@ -24,6 +24,6 @@ namespace Flutter.Support.Application.News.Services
         /// <param name="pageIndex"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        Task<NewsQueryDto> Query(int pageSize, int pageIndex, int type = 0, string channelId = ShowApiNewsChannel.Domestic);
+        Task<NewsQueryDto> Query(string channelId = ShowApiNewsChannel.Domestic, int pageIndex=1, int pageSize=20 );
     }
 }
