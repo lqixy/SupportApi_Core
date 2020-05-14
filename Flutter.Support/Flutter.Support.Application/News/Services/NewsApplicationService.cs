@@ -49,7 +49,7 @@ namespace Flutter.Support.Application.News.Services
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public async Task InsertNews(string channelId = ShowApiNewsChannel.Domestic)
+        public async Task InsertNews(string channelId = ShowApiNewsChannel.Domestic, int pageIndex = 1, int pageSize = 20)
         {
             #region JuHe
             //for (int i = 0; i <= (int)NewsTypeEnum.caijing; i++)
@@ -78,7 +78,7 @@ namespace Flutter.Support.Application.News.Services
 
             #region ShowApi
             //var channelId = ShowApiNewsChannel.DomesticNew;
-            var input = new ShowApiNewsInputDto(channelId);
+            var input = new ShowApiNewsInputDto(channelId, page: pageIndex, maxResult: pageSize);
 
             var apiResult = await showApiRepository.GetAsync<ShowApiNewsInputDto
                 , ShowApiOutputDtoBase<ShowApiNewsOutputDto>>(input, false);

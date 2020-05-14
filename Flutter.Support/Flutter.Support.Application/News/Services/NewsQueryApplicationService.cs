@@ -44,17 +44,17 @@ namespace Flutter.Support.Application.News.Services
             var redisKey = $"{RedisTitle}{channelId}_{pageIndex}_{pageSize}";
 
             var dto = redisCache.GetValue<NewsQueryDto>(redisKey);
-            if (dto != null) return dto;
+            if (dto != null && dto.List.Any()) return dto;
 
             var now = DateTime.Now;
 
             var first = newsRepository.FirstOrDefault(x => x.ChannelId == channelId, x => x.Date);
-            if (first != null && (now - first.Date).TotalMinutes >= 30)
+            if (first == null || (first != null && (now - first.Date).TotalMinutes >= 30))
             {
-                await newsApplicationService.InsertNews(channelId);
+                await newsApplicationService.InsertNews(channelId,pageIndex,pageSize);
             }
 
-            var result = GetNews(channelId, pageSize, pageIndex);
+            var result = GetNews(channelId, pageIndex, pageSize);
 
             redisCache.SetValue(redisKey, result, TimeSpan.FromMinutes(5));
             return result;
