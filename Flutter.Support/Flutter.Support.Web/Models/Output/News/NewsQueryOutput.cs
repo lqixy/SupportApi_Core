@@ -46,6 +46,8 @@ namespace Flutter.Support.Web.Models.Output.News
         /// 来源
         /// </summary>
         public string AuthorName { get; set; }
+
+        public string Content { get; set; }
         /// <summary>
         /// 地址
         /// </summary>

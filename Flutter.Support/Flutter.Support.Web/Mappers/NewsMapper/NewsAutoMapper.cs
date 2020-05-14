@@ -19,6 +19,7 @@ namespace Flutter.Support.Web.Mappers.NewsMapper
             CreateMap<NewsInfoQueryDto, NewsInfoOutput>()
                 .ForMember(des => des.ImageUrls,
                 opt => opt.MapFrom(src => JsonConvert.DeserializeObject<List<string>>(src.JsonData)));
+                //.ForAllMembers(x => x.NullSubstitute(""));
 
             CreateMap<News, NewsInfoQueryDto>();
         }
