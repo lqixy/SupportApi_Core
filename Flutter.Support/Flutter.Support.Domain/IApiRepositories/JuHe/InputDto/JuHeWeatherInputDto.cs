@@ -9,7 +9,7 @@ using System.Text;
 namespace Flutter.Support.Domain.IApiRepositories.JuHe.InputDto
 {
 
-    [ApiUrlAttribute("simpleWeather", "query", Url = Enums.ApiUrlAddress.Weather)]
+    [ApiUrlAttribute("simpleWeather", "query", Url = Enums.ApiUrlAddress.JuHeWeather)]
     public class JuHeWeatherInputDto : ApiJsonSerializeDto
     {
         public JuHeWeatherInputDto()

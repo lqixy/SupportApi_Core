@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UnitTestIocManager.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="appsettings.json" />
   </ItemGroup>
 
@@ -17,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.1.4" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
@@ -24,7 +31,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Flutter.Support.ApiRepository\Flutter.Support.ApiRepository.csproj" />
+    <ProjectReference Include="..\Flutter.Support.Application\Flutter.Support.Application.csproj" />
+    <ProjectReference Include="..\Flutter.Support.Dependency\Flutter.Support.Dependency.csproj" />
     <ProjectReference Include="..\Flutter.Support.Domain\Flutter.Support.Domain.csproj" />
+    <ProjectReference Include="..\Flutter.Support.Repository\Flutter.Support.Repository.csproj" />
   </ItemGroup>
 
 </Project>

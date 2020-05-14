@@ -12,14 +12,14 @@ namespace Flutter.Support.Common
             return (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000000;
         }
 
-        public static string EncryptMd5(this string content, String keyValue, String charset)
-        {
-            if (keyValue != null)
-            {
-                return Base64(MD5(content + keyValue, charset), charset);
-            }
-            return Base64(MD5(content, charset), charset);
-        }
+        //public static string EncryptMd5(this string content, String keyValue, String charset)
+        //{
+        //    if (keyValue != null)
+        //    {
+        //        return Base64(MD5(content + keyValue, charset), charset);
+        //    }
+        //    return Base64(MD5(content, charset), charset);
+        //}
 
 
         ///<summary>

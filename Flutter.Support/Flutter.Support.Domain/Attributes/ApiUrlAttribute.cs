@@ -24,7 +24,7 @@ namespace Flutter.Support.Domain.Attributes
         public string GetUrl()
         {
             var url = ConfigHelper.Get($"OutsideApiConfig:ApiUrlAddress:{Url.ToString()}");
-            return $"{url.TrimEnd('/')}/{Controller}/{Action}";
+            return $"{url.TrimEnd('/')}/{Controller}{(string.IsNullOrWhiteSpace(Action) ? "" : "/")}{Action}";
         }
 
         internal static ApiUrlAttribute GetDefaultApiUrlAttribute()

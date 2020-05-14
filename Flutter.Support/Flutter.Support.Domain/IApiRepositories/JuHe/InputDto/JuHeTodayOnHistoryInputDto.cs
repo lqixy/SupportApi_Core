@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Flutter.Support.Domain.IApiRepositories.JuHe.InputDto
 {
-    [ApiUrl("todayOnhistory", "queryEvent.php", Url = Enums.ApiUrlAddress.NewsOrToday)]
+    [ApiUrl("todayOnhistory", "queryEvent.php", Url = Enums.ApiUrlAddress.JuHeNewsOrToday)]
     public class JuHeTodayOnHistoryInputDto : ApiJsonSerializeDto
     {
         public JuHeTodayOnHistoryInputDto()

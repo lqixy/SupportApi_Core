@@ -18,11 +18,11 @@ namespace lutter.Support.Domain.Attributes
         protected static ApiUrlAttribute GetAppUrl<TModel>(ApiUrlAttribute apiUrlAttribute = null) where TModel : IApiInputDto
         {
             string controller;
-            if (apiUrlAttribute == null || string.IsNullOrWhiteSpace(apiUrlAttribute.Action))
+            if (apiUrlAttribute == null)//|| string.IsNullOrWhiteSpace(apiUrlAttribute.Action))
             {
                 return ApiUrlAttribute.GetDefaultApiUrlAttribute();
             }
-            if (!string.IsNullOrWhiteSpace(apiUrlAttribute.Controller) && !apiUrlAttribute.Action.IsEmpty())
+            if (!string.IsNullOrWhiteSpace(apiUrlAttribute.Controller))//&& !apiUrlAttribute.Action.IsEmpty())
             {
                 controller = apiUrlAttribute.Controller;
             }

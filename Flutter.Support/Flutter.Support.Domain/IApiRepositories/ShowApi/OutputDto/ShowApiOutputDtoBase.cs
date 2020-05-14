@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Flutter.Support.Extension.Application.Services.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Flutter.Support.Domain.IApiRepositories.ShowApi.OutputDto
 {
-    public class ShowApiOutputDtoBase<T> where T : ShowApiOutputBodyBase
+    public class ShowApiOutputDtoBase<T> : IApiResultDto
+        where T : ShowApiOutputBodyBase
     {
         /// <summary>
         /// 消息体的JSON封装，所有应用级的返回参数将嵌入此对象 

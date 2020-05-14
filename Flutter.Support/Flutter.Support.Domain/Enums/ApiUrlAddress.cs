@@ -9,8 +9,12 @@ namespace Flutter.Support.Domain.Enums
         /// <summary>
         /// 聚合新闻
         /// </summary>
-        NewsOrToday,
+        JuHeNewsOrToday,
 
-        Weather
+        JuHeWeather,
+
+        ShowApiNews,
+
+        ShowApiWeather
     }
 }

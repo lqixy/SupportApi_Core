@@ -10,7 +10,7 @@ namespace Flutter.Support.Domain.IApiRepositories.ShowApi
 {
     public interface IShowApiRepository
     {
-        Task<TResult> GetAsync<TInput, TResult>(TInput input)
+        Task<TResult> GetAsync<TInput, TResult>(TInput input, bool propertyNameLower = true)
             where TInput : IApiInputDto where TResult : class, IApiResultDto;
 
         //Task<TResult> PostAsync<TInput, TResult>(TInput input)

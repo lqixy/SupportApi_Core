@@ -19,7 +19,7 @@ namespace Flutter.Support.ApiRepository.Repositories
             this.apiContext = apiContext;
         }
 
-        public async Task<TResult> GetAsync<TInput, TResult>(TInput input)
+        public async Task<TResult> GetAsync<TInput, TResult>(TInput input, bool propertyNameLower = true)
             where TInput : IApiInputDto
             where TResult : class, IApiResultDto
         {
@@ -34,7 +34,7 @@ namespace Flutter.Support.ApiRepository.Repositories
             for (int i = 0; i < properties.Length; i++)
             {
                 var curproperty = properties[i];
-                parames += $"{(i > 0 ? "&" : "")}{curproperty.Name.ToLower()}={curproperty.GetValue(input, null)}";
+                parames += $"{(i > 0 ? "&" : "")}{(propertyNameLower ? curproperty.Name.ToLower() : curproperty.Name)}={curproperty.GetValue(input, null)}";
             }
             //ApiLogHelper.Logger.Debug($"GET URL：{url}\r\n参数：{parames}");
             var result = await apiContext.GetAsync<TResult>($"{url}?{parames}");

@@ -13,15 +13,15 @@ namespace Flutter.Support.Domain.IApiRepositories.ShowApi.InputDto
     {
         public ShowApiInputDtoBase()
         {
-            AppId = ConfigHelper.Get("ShowApi:appId");
-            //Timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+            showapi_appid = ConfigHelper.Get("ShowApi:appId");
+            showapi_timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
         }
 
         [JsonProperty(PropertyName = "showapi_appid")]
-        public string AppId { get; }
+        public string showapi_appid { get; }
 
         [JsonProperty(PropertyName = "showapi_timestamp")]
-        public string Timestamp { get; set; }
+        public string showapi_timestamp { get; set; }
         /*
          (请注意例如有两个参数分别为ab , abc 则参数ab排在abc之前)
 排序后以key+value方式拼装字符串如下：
@@ -39,7 +39,7 @@ String sign=DigestUtils.md5Hex(str.getBytes("utf-8"))
         /// 为了验证用户身份，以及确保参数不被中间人篡改，需要传递调用者的数字签名
         /// </summary>
         [JsonProperty(PropertyName = "showapi_sign")]
-        public string Sign { get; set; }
+        public string showapi_sign { get; set; }
 
         public override string CounterSign()
         {
@@ -50,9 +50,9 @@ String sign=DigestUtils.md5Hex(str.getBytes("utf-8"))
             var parameterString = JsonConvert.SerializeObject(this, jSetting);
             var parameters = JsonConvert.DeserializeObject<SortedDictionary<string, string>>(parameterString);
 
-            var str = string.Join("&", parameters.Where(x => !string.IsNullOrWhiteSpace(x.Value)).Select(x => $"{x.Key}={x.Value}"));
+            var str = string.Join("", parameters.Where(x => !string.IsNullOrWhiteSpace(x.Value)).Select(x => $"{x.Key}{x.Value}"));
             var result = ($"{str}{ConfigHelper.Get("ShowApi:secret")}").EntryMD5("utf-8");
-            return result;
+            return showapi_sign = result;
         }
 
 
