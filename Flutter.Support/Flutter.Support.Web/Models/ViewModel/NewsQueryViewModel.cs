@@ -20,7 +20,12 @@ namespace Flutter.Support.Web.Models.ViewModel
         /// </summary>
         [ValidEnumValueAttribute(ErrorMessage = "新闻类型为:0--4")]
         public NewsTypeViewModelEnum Type { get; set; }
-       
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ChannelId { get; set; }  
+
     }
     /// <summary>
     /// 

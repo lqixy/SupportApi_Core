@@ -23,6 +23,8 @@ namespace Flutter.Support.Domain.Dtos
 
         public string AuthorName { get; set; }
 
+        public string Desc { get; set; }
+
         public string Url { get; set; }
 
         //public IEnumerable<string> ImageUrls { get; set; }

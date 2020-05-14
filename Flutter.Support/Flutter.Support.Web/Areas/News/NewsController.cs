@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Flutter.Support.Application.News.Services;
+using Flutter.Support.Extension.Configurations;
 using Flutter.Support.Web.Models.Output.News;
 using Flutter.Support.Web.Models.ViewModel;
 using log4net;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Flutter.Support.Web.Areas.News
@@ -37,8 +39,19 @@ namespace Flutter.Support.Web.Areas.News
         [Route("query")]
         public async Task<NewsQueryOutput> NewsQuery(NewsQueryViewModel viewModel)
         {
-            var result = await newsApplicationService.Query(viewModel.PageSize, viewModel.PageIndex, (int)viewModel.Type);
+            var result = await newsApplicationService.Query(viewModel.PageSize, viewModel.PageIndex, (int)viewModel.Type, viewModel.ChannelId);
             return mapper.Map<NewsQueryOutput>(result);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("channels")]
+        public List<NewsChannelOutput> NewsChannelQuery()
+        {
+            var str = ConfigHelper.Get("ChannelList");
+            return JsonConvert.DeserializeObject<List<NewsChannelOutput>>(str);
         }
 
     }

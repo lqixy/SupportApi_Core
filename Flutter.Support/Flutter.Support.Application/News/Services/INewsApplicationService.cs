@@ -1,4 +1,5 @@
-﻿using Flutter.Support.Domain.Dtos;
+﻿using Flutter.Support.Application.News.ShowApiChannels;
+using Flutter.Support.Domain.Dtos;
 using Flutter.Support.SqlSugar.Enums;
 using System;
 using System.Linq.Expressions;
@@ -14,7 +15,7 @@ namespace Flutter.Support.Application.News.Services
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        Task InsertNews(int type = 0);
+        Task InsertNews(int type = 0, string channelId = ShowApiNewsChannel.Domestic);
         /// <summary>
         /// 
         /// </summary>

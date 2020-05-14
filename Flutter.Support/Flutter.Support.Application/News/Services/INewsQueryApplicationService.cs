@@ -1,4 +1,5 @@
-﻿using Flutter.Support.Domain.Dtos;
+﻿using Flutter.Support.Application.News.ShowApiChannels;
+using Flutter.Support.Domain.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,6 +24,6 @@ namespace Flutter.Support.Application.News.Services
         /// <param name="pageIndex"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        Task<NewsQueryDto> Query(int pageSize, int pageIndex, int type = 0);
+        Task<NewsQueryDto> Query(int pageSize, int pageIndex, int type = 0, string channelId = ShowApiNewsChannel.Domestic);
     }
 }

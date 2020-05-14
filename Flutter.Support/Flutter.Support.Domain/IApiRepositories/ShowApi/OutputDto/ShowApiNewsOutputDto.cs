@@ -36,6 +36,8 @@ namespace Flutter.Support.Domain.IApiRepositories.ShowApi.OutputDto
 
         public string Link { get; set; }
 
+        public string Desc { get; set; }
+
         public string Image { get; set; }
 
         public List<ShowApiNewsImageOutputDto> ImageUrls { get; set; }

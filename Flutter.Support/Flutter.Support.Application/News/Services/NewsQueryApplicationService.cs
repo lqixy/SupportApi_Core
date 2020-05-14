@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Flutter.Support.Application.News.ShowApiChannels;
 using Flutter.Support.Domain.Dtos;
 using Flutter.Support.Domain.IRepositories;
 using Flutter.Support.Redis.Cache;
@@ -38,9 +39,9 @@ namespace Flutter.Support.Application.News.Services
         /// <param name="pageIndex"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public async Task<NewsQueryDto> Query(int pageSize = 12, int pageIndex = 1, int type = 0)
+        public async Task<NewsQueryDto> Query(int pageSize = 12, int pageIndex = 1, int type = 0, string channelId = ShowApiNewsChannel.Domestic)
         {
-            var dto = redisCache.GetValue<NewsQueryDto>($"{RedisTitle}{type}_{pageIndex}_{pageSize}");
+            var dto = redisCache.GetValue<NewsQueryDto>($"{RedisTitle}{type}_{channelId}_{pageIndex}_{pageSize}");
             if (dto != null) return dto;
 
             var now = DateTime.Now;

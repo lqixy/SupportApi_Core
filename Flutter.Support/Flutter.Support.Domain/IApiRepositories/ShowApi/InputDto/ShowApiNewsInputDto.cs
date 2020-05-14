@@ -13,7 +13,7 @@ namespace Flutter.Support.Domain.IApiRepositories.ShowApi.InputDto
                                    int page = 1,
                                    int maxResult = 20,
                                    string channelName = "",
-                                   int needContent = 0,
+                                   int needContent = 1,
                                    int needAllList = 0,
                                    int needHtml = 0) : base()
         {

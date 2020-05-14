@@ -35,13 +35,13 @@ namespace Flutter.Support.Web.Filters
                 throw new UserFriendlyException("响应超时");
             }
             //校验商户信息
-            if (string.IsNullOrEmpty(requestData.Key))
+            if (string.IsNullOrEmpty(requestData.Key) || !requestData.Key.Equals(ConfigHelper.Get("AppSettings:ApiAuthorizationKey")))
             {
                 throw new UserFriendlyException("错误的Key");
             }
 
             //验证加密参数
-            if (requestData.RequestData.EncryptMd5(ConfigHelper.Get("AppSettings:ApiAuthorizationKey"), "utf-8") != requestData.SignData)
+            if (requestData.RequestData.EncryptMd5(ConfigHelper.Get("AppSettings:ApiAuthorizationSecret"), "utf-8") != requestData.SignData)
             {
                 throw new UserFriendlyException("请检查参数传递是否正确");
             }

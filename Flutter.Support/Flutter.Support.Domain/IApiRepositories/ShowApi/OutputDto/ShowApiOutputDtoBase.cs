@@ -47,5 +47,7 @@ namespace Flutter.Support.Domain.IApiRepositories.ShowApi.OutputDto
         /// 本次请求id
         /// </summary>
         public string Showapi_Res_Id { get; set; }
+
+        public bool Success { get { return this.Showapi_Res_Code == 0; } }
     }
 }

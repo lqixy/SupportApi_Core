@@ -13,12 +13,12 @@ namespace Flutter.Support.ApiRepository.Domain
             using var client = new HttpClient();
             //client.Timeout = timeout != null ? TimeSpan.FromMilliseconds(timeout.Value) : DefaultTimeout;
             client.DefaultRequestHeaders.ExpectContinue = false;
-            //预热连接
-            await client.SendAsync(new HttpRequestMessage
-            {
-                Method = new HttpMethod("HEAD"),
-                RequestUri = new Uri(url)
-            });
+            ////预热连接
+            //await client.SendAsync(new HttpRequestMessage
+            //{
+            //    Method = new HttpMethod("HEAD"),
+            //    RequestUri = new Uri(url)
+            //});
             return await client.GetAsync(url).ConfigureAwait(false);
         }
 
