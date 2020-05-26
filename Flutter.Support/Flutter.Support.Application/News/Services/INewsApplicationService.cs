@@ -1,7 +1,4 @@
-﻿using Flutter.Support.Application.News.ShowApiChannels;
-using Flutter.Support.Domain.Dtos;
-using Flutter.Support.SqlSugar.Enums;
-using System;
+﻿using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -15,28 +12,12 @@ namespace Flutter.Support.Application.News.Services
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        Task InsertNews(string channelId, int pageIndex = 1, int pageSize = 20);
+        Task InsertNews(string channelId, int type, int pageIndex = 1, int pageSize = 20);
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         void DeleteNews(Expression<Func<SqlSugar.Entities.News, bool>> whereExpression);
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="pageSize"></param>
-        ///// <param name="pageIndex"></param>
-        ///// <param name="type"></param>
-        //NewsQueryDto GetNews(int pageSize = 12, int pageIndex = 1, int type = 0);
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="pageSize"></param>
-        ///// <param name="pageIndex"></param>
-        ///// <param name="type"></param>
-        ///// <returns></returns>
-        //Task<NewsQueryDto> Query(int pageSize, int pageIndex, int type = 0);
-
+        
     }
 }

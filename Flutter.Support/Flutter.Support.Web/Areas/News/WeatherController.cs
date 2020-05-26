@@ -3,9 +3,6 @@ using Flutter.Support.Application.Weather;
 using Flutter.Support.Web.Models.Output.Weather;
 using Flutter.Support.Web.Models.ViewModel.Weather;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Flutter.Support.Web.Areas.News

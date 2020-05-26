@@ -60,7 +60,8 @@ namespace Flutter.Support.Application.TodayOnHistory
         private async Task InsertDetail(int id)
         {
             var input = new JuHeTodayOnHistoryDetailInputDto { E_Id = id };
-            var apiResult = await juHeApiRepository.GetAsync<JuHeTodayOnHistoryDetailInputDto, JuHeTodayOnHistoryDetailOutputDto>(input);
+            var apiResult = await juHeApiRepository.GetAsync<JuHeTodayOnHistoryDetailInputDto, 
+                JuHeTodayOnHistoryDetailOutputDto>(input);
 
             if (apiResult.Success)
             {
@@ -95,7 +96,8 @@ namespace Flutter.Support.Application.TodayOnHistory
         public async Task Insert(string day)
         {
             var input = new JuHeTodayOnHistoryInputDto { Date = day };
-            var apiResult = await juHeApiRepository.GetAsync<JuHeTodayOnHistoryInputDto, JuHeTodayOnHistoryOutputDto>(input);
+            var apiResult = await juHeApiRepository.GetAsync<JuHeTodayOnHistoryInputDto, 
+                JuHeTodayOnHistoryOutputDto>(input);
 
             if (apiResult.Success)
             {

@@ -12,6 +12,11 @@ namespace Flutter.Support.Repository.Repositories
     public class TodayOnHistoryRepository : SugarDbContext<TodayOnHistory>
         , ITodayOnHistoryRepository
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public TodayOnHistoryDetailDomainDto Detail(int id)
         {
             //var result = Db.Queryable<TodayOnHistory, TodayOnHistoryDetail>((th, thd) => new object[]
@@ -29,18 +34,28 @@ namespace Flutter.Support.Repository.Repositories
             //return Db.Queryable<TodayOnHistoryDetail>().First(x => x.MainId == id);
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="detail"></param>
         public void InsertDetail(TodayOnHistoryDetail detail)
         {
             Db.Insertable(detail).ExecuteCommand();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="list"></param>
         public void InsertRange(List<TodayOnHistory> list)
         {
             //Db.Insertable(list);
             CurrentDb.InsertRange(list);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns></returns>
         public List<TodayOnHistory> Query(string day)
         {
             return CurrentDb.GetList(x => x.Day == day);

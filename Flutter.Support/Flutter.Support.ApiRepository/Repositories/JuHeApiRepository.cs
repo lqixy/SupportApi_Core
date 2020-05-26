@@ -1,11 +1,6 @@
 ﻿using Flutter.Support.ApiRepository.Domain;
 using Flutter.Support.Domain.IApiRepositories.JuHe;
-using Flutter.Support.Domain.IApiRepositories.JuHe.InputDto;
-using Flutter.Support.Domain.IApiRepositories.JuHe.OutputDto;
 using Flutter.Support.Extension.Application.Services.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Flutter.Support.ApiRepository.Repositories

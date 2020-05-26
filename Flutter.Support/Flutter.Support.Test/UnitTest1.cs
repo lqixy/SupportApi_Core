@@ -1,10 +1,7 @@
 using Flutter.Support.Application.News.Services;
 using Flutter.Support.Application.News.ShowApiChannels;
 using Flutter.Support.Domain.IApiRepositories.ShowApi;
-using Flutter.Support.Domain.IApiRepositories.ShowApi.InputDto;
-using Flutter.Support.Domain.IApiRepositories.ShowApi.OutputDto;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Threading.Tasks;
 using Xunit;
 

@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using Flutter.Support.Application.TodayOnHistory;
 using Flutter.Support.Domain.Dtos;
-using Flutter.Support.Extension.Exceptions;
-using Flutter.Support.Web.ModelBinders;
 using Flutter.Support.Web.Models.Output.TodayOnHistory;
 using Flutter.Support.Web.Models.ViewModel.TodayOnHistorys;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Flutter.Support.Web.Areas.TodayOnHistory

@@ -5,11 +5,8 @@ using Flutter.Support.Domain.IApiRepositories.JuHe.InputDto;
 using Flutter.Support.Domain.IApiRepositories.JuHe.OutputDto;
 using Flutter.Support.Domain.IRepositories;
 using Flutter.Support.Redis.Cache;
-using Flutter.Support.SqlSugar;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Flutter.Support.Application.Weather
@@ -72,7 +69,11 @@ namespace Flutter.Support.Application.Weather
             return result;
             //return mapper.Map<WeatherQueryDto>(weather);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="city"></param>
+        /// <returns></returns>
         public async Task InsertWeather(string city)
         {
             var input = new JuHeWeatherInputDto { City = city };
@@ -93,7 +94,11 @@ namespace Flutter.Support.Application.Weather
 
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="city"></param>
+        /// <returns></returns>
         public async Task Update(string city)
         {
             var input = new JuHeWeatherInputDto { City = city };

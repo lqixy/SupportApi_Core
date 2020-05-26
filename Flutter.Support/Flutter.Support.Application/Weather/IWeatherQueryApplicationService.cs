@@ -8,7 +8,11 @@ namespace Flutter.Support.Application.Weather
 {
     public interface IWeatherQueryApplicationService
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="city"></param>
+        /// <returns></returns>
         Task<WeatherQueryDto> Query(string city);
     }
 }
